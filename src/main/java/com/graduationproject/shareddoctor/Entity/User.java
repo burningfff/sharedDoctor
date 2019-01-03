@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.sql.Date;
 
 /**
  * Create by cy on 2018/6/12
@@ -21,15 +22,19 @@ public class User {
 
     @Id
     @GeneratedValue
-    public String id;
+    @Column(name = "user_id")
+    public String userId;
 
-    @Column(nullable=false)
+    @Column(name = "user_name")
     public String userName;
 
-    @Column(nullable=false)
+    @Column(name = "password")
     public String password;
 
+    @Column(name = "identity")
     public Integer identity;
 
+    @Column(name = "create_date")
+    public Date createDate;
 
 }

@@ -29,9 +29,9 @@ public class UserController {
 //    public ReturnUtil changePassword(@RequestBody User user){
 //        return userService.changePassword(user.getPassword(),user.getId());
 //    }
-    @PostMapping("/user/findByUserId")
+    @PostMapping("/user/findUserByUserId")
     public ReturnUtil findByUserId(@RequestBody User user){
-        return userService.findUserById(user.getId());
+        return userService.findUserByUserId(user.getUserId());
     }
 //
 //    @PostMapping("/user/checkUserName")
