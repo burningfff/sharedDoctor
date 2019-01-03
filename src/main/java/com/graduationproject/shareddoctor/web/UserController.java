@@ -1,6 +1,6 @@
 package com.graduationproject.shareddoctor.web;
 
-import com.graduationproject.shareddoctor.pojo.User;
+import com.graduationproject.shareddoctor.Entity.User;
 import com.graduationproject.shareddoctor.service.UserService;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
 import org.springframework.beans.factory.annotation.Autowired;

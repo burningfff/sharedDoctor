@@ -1,17 +1,17 @@
 package com.graduationproject.shareddoctor.service.Impl;
 
-import com.graduationproject.shareddoctor.dao.UserDao;
-import com.graduationproject.shareddoctor.pojo.User;
+import com.graduationproject.shareddoctor.Entity.User;
 import com.graduationproject.shareddoctor.respository.UserRepository;
 import com.graduationproject.shareddoctor.service.UserService;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 /**
  * Create by cy on 2018/6/13
  */
-
+@ComponentScan(basePackages="com.graduationproject.shareddoctor")
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -22,10 +22,10 @@ public class UserServiceImpl implements UserService {
 //    TeacherDao teacherDao;
 //
 
-
     @Override
-    public ReturnUtil findUserById(String id) {
-        return ReturnUtil.ok(userRepository.findById(id));
+    public ReturnUtil findUserById(String userId) {
+        User user=userRepository.findUserById(userId);
+        return ReturnUtil.ok(user);
     }
 //    @Override
 //    public ReturnUtil signIn(String userName, String password) {
