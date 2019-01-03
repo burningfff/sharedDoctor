@@ -2,6 +2,7 @@ package com.graduationproject.shareddoctor.service.Impl;
 
 import com.graduationproject.shareddoctor.dao.UserDao;
 import com.graduationproject.shareddoctor.pojo.User;
+import com.graduationproject.shareddoctor.respository.UserRepository;
 import com.graduationproject.shareddoctor.service.UserService;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    UserDao userDao;
+    UserRepository userRepository;
 //    @Autowired
 //    StudentDao studentDao;
 //    @Autowired
 //    TeacherDao teacherDao;
 //
+
+
+    @Override
+    public ReturnUtil findUserById(String id) {
+        return ReturnUtil.ok(userRepository.findById(id));
+    }
 //    @Override
 //    public ReturnUtil signIn(String userName, String password) {
 //        User user = userDao.findUserByName(userName);
@@ -42,11 +49,7 @@ public class UserServiceImpl implements UserService {
 //        return ReturnUtil.ok();
 //    }
 //
-    @Override
-    public ReturnUtil findUserById(String userId) {
-            User user=userDao.findUserById(userId);
-            return ReturnUtil.ok(user);
-    }
+
 //
 //    @Override
 //    public ReturnUtil changePassword(String password,String userId){
