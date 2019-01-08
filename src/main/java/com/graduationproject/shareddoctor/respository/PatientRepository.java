@@ -1,6 +1,6 @@
 package com.graduationproject.shareddoctor.respository;
 
-import com.graduationproject.shareddoctor.Entity.User;
+import com.graduationproject.shareddoctor.Entity.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,9 +9,7 @@ import org.springframework.stereotype.Repository;
  * @author: 杨帆
  * @create: 2019/1/3
  **/
-
-public interface UserRepository extends JpaRepository<User,String> {
-
-    User findByUserId(String userId);
+@Repository
+public interface PatientRepository extends JpaRepository<Patient,String> {
 
 }

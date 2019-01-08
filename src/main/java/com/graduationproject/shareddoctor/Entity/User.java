@@ -22,19 +22,19 @@ public class User {
 
     @Id
     @GeneratedValue
-    @Column(name = "user_id")
+//    @Column(name = "user_id")
     public String userId;
 
-    @Column(name = "user_name")
+//    @Column(name = "user_name")
     public String userName;
 
-    @Column(name = "password")
+//    @Column(name = "password")
     public String password;
 
-    @Column(name = "identity")
+//    @Column(name = "identity")
     public Integer identity;
 
-    @Column(name = "create_date")
+//    @Column(name = "create_date")
     public Date createDate;
 
 }

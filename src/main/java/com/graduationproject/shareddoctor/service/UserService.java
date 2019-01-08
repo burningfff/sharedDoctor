@@ -1,6 +1,7 @@
 package com.graduationproject.shareddoctor.service;
 
 
+import com.graduationproject.shareddoctor.Entity.User;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
 
 /**
@@ -15,7 +16,9 @@ public interface UserService {
 //    ReturnUtil changePassword(String password, String userId);
 //
     //根据id查找user
-    ReturnUtil findUserByUserId(String id);
+    ReturnUtil findByUserId(String id);
+
+    ReturnUtil addUser(User user);
 //
 //    ReturnUtil checkUserName(String userName);
 

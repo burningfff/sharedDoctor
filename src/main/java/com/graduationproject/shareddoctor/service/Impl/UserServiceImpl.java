@@ -23,10 +23,18 @@ public class UserServiceImpl implements UserService {
 //
 
     @Override
-    public ReturnUtil findUserByUserId(String userId) {
-        User user=userRepository.findUserByUserId(userId);
+    public ReturnUtil findByUserId(String userId) {
+        User user=userRepository.findByUserId(userId);
         return ReturnUtil.ok(user);
     }
+
+    @Override
+    public ReturnUtil addUser(User user) {
+        userRepository.save(user);
+        return ReturnUtil.ok("插入成功");
+    }
+
+
 //    @Override
 //    public ReturnUtil signIn(String userName, String password) {
 //        User user = userRepository.findUserByName(userName);
