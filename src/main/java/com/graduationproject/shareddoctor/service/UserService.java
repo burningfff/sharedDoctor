@@ -16,9 +16,9 @@ public interface UserService {
 //    ReturnUtil changePassword(String password, String userId);
 //
     //根据id查找user
-    ReturnUtil findByUserId(String id);
+    ReturnUtil findUserByUserId(String id);
 
-    ReturnUtil addUser(User user);
+    ReturnUtil addUser(String userName, String password, Integer identity);
 //
 //    ReturnUtil checkUserName(String userName);
 

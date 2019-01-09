@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
 import java.sql.Date;
 
 
@@ -32,19 +33,14 @@ public class UserController {
 //    public ReturnUtil changePassword(@RequestBody User user){
 //        return userService.changePassword(user.getPassword(),user.getId());
 //    }
-    @PostMapping("/user/findByUserId")
-    public ReturnUtil findByUserId(@RequestBody User user){
-        return userService.findByUserId(user.getUserId());
+    @PostMapping("/user/findUserByUserId")
+    public ReturnUtil findUserByUserId(@RequestBody User user){
+        return userService.findUserByUserId(user.getUserId());
     }
 
     @PostMapping("/user/addUser")
-    public ReturnUtil addUser(){
-        User user = new User();
-        user.setUserName("崔杨");
-        user.setUserId("150410315");
-        user.setCreateDate(null);
-        user.setIdentity(1);
-        return userService.addUser(user);
+    public ReturnUtil addUser(@RequestBody User user){
+        return userService.addUser(user.userName,user.password,user.identity);
     }
 
 

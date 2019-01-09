@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Create by cy on 2018/6/13
  */
@@ -23,15 +27,21 @@ public class UserServiceImpl implements UserService {
 //
 
     @Override
-    public ReturnUtil findByUserId(String userId) {
-        User user=userRepository.findByUserId(userId);
+    public ReturnUtil findUserByUserId(String userId) {
+        User user=userRepository.findUserByUserId(userId);
         return ReturnUtil.ok(user);
     }
 
     @Override
-    public ReturnUtil addUser(User user) {
+    public ReturnUtil addUser(String userName, String password, Integer identity){
+        User user =new User();
+        user.setUserName(userName);
+        user.setPassword(password);
+        user.setIdentity(identity);
+//        user.setCreateDate(new java.sql.Date(new java.util.Date().getTime()));
+        user.setCreateDate(new Date());
         userRepository.save(user);
-        return ReturnUtil.ok("插入成功");
+        return ReturnUtil.ok();
     }
 
 
