@@ -2,7 +2,6 @@ package com.graduationproject.shareddoctor.Entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 

@@ -21,8 +21,7 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public ReturnUtil findPatientByPatientId(String patientId) {
-        Optional<Patient> patient=patientRepository.findById(patientId);
+        Patient patient=patientRepository.findPatientByPatientId(patientId);
         return ReturnUtil.ok(patient);
-
     }
 }

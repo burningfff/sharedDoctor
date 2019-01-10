@@ -27,6 +27,9 @@ public class Doctor {
     @Column(name = "doctor_name")
     public String doctorName;
 
+    @Column(name = "identity_card")
+    public Integer identityCard;
+
     @Column(name = "depart_id")
     public Integer departId;
 

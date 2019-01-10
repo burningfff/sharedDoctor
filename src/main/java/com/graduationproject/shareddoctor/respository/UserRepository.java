@@ -2,7 +2,6 @@ package com.graduationproject.shareddoctor.respository;
 
 import com.graduationproject.shareddoctor.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  * @program: sharedDoctor

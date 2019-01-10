@@ -26,6 +26,9 @@ public class Patient {
     @Column(name = "patient_name")
     public String patientName;
 
+    @Column(name = "identity_card")
+    public Integer identityCard;
+
     @Column(name = "age")
     public Integer age;
 
