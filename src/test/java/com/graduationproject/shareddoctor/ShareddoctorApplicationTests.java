@@ -15,13 +15,8 @@ import java.util.Optional;
 @SpringBootTest
 public class ShareddoctorApplicationTests {
 
-    @Autowired
-    UserRepository userRepository;
     @Test
     public void contextLoads() {
-        Optional<User> user=userRepository.findById("150410315");
-        System.out.println(user);
-
     }
 }
 

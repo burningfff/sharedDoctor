@@ -5,38 +5,35 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 
 /**
  * @program: sharedDoctor
  * @author: 杨帆
- * @create: 2019/1/3
+ * @create: 2019/1/10
  **/
+
 
 @Getter
 @Setter
 @Entity
 @Component
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
-public class User {
+public class Order {
 
     @Id
     @GeneratedValue(generator = "jpa-uuid")
-    @Column(name = "user_id",length = 32)
-    public String userId;
+    @Column(name = "order_id",length = 32)
+    public String orderId;
 
-    @Column(name = "user_name")
-    public String userName;
+    @Column(name = "time_id")
+    public String timeId;
 
-    @Column(name = "password")
-    public String password;
-
-    @Column(name = "identity")
-    public Integer identity;
-
-    @Column(name = "create_date")
-    public Date createDate;
+    @Column(name = "patient_id")
+    public String patientId;
 
 }
