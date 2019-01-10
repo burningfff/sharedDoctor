@@ -8,8 +8,8 @@ import com.graduationproject.shareddoctor.utils.ReturnUtil;
  */
 
 
-public interface DoctorService {
+public interface ServiceService {
 
-    //根据id查找Doctor
-    ReturnUtil findDoctorByDoctorId(String doctorId);
+    //根据id查找Service
+    ReturnUtil findServiceByServiceId(String ServiceId);
 }

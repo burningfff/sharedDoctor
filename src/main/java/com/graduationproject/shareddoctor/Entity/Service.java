@@ -27,6 +27,7 @@ import java.util.Date;
 public class Service {
 
     @Id
+    @GeneratedValue(generator = "jpa-uuid")
     @Column(name = "service_id",length = 10)
     public String serviceId;
 
