@@ -20,7 +20,6 @@ import javax.persistence.Id;
 @Component
 public class Doctor {
     @Id
-    @GeneratedValue
     @Column(name = "doctor_id")
     public String doctorId;
 

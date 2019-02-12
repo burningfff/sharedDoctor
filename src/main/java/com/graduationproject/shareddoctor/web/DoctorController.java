@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Create by cy on 2018/6/13
- */
+ * @program: sharedDoctor
+ * @author: 杨帆
+ * @create: 2019/1/10
+ **/
 
 @CrossOrigin
 @RestController

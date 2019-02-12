@@ -9,8 +9,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 /**
- * Create by cy on 2018/6/13
- */
+ * @program: sharedDoctor
+ * @author: 杨帆
+ * @create: 2019/1/10
+ **/
 @ComponentScan(basePackages="com.graduationproject.shareddoctor")
 @Service
 public class IllnessServiceImpl implements IllnessService {

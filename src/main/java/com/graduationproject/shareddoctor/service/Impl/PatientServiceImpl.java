@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 /**
- * Create by cy on 2018/6/13
- */
+ * @program: sharedDoctor
+ * @author: 杨帆
+ * @create: 2019/1/10
+ **/
 @ComponentScan(basePackages="com.graduationproject.shareddoctor")
 @Service
 public class PatientServiceImpl implements PatientService {

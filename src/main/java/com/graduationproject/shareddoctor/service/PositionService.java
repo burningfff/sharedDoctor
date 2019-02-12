@@ -4,9 +4,10 @@ package com.graduationproject.shareddoctor.service;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
 
 /**
- * Create by cy on 2018/6/12
- */
-
+ * @program: sharedDoctor
+ * @author: 杨帆
+ * @create: 2019/1/10
+ **/
 
 public interface PositionService {
 

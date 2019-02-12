@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- * Create by cy on 2018/6/13
- */
+ * @program: sharedDoctor
+ * @author: 杨帆
+ * @create: 2019/1/10
+ **/
 @ComponentScan(basePackages="com.graduationproject.shareddoctor")
 @org.springframework.stereotype.Service
 public class ServiceServiceImpl implements ServiceService {

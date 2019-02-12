@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Create by cy on 2018/6/17
- */
-
+ * @program: sharedDoctor
+ * @author: 杨帆
+ * @create: 2019/1/10
+ **/
 
 public class Utils {
     public static String trans2Split(String str){

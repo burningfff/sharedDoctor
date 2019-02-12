@@ -1,26 +1,29 @@
 package com.graduationproject.shareddoctor.service;
 
 
-import com.graduationproject.shareddoctor.Entity.User;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
 
 /**
- * Create by cy on 2018/6/12
- */
-
+ * @program: sharedDoctor
+ * @author: 杨帆
+ * @create: 2019/1/10
+ **/
 
 public interface UserService {
-//    ReturnUtil signIn(String userName, String password);
-//
-//    //修改密码
-//    ReturnUtil changePassword(String password, String userId);
-//
-    //根据id查找user
+//  登录
+    ReturnUtil signIn(String userName, String password);
+
+//  注册
+    ReturnUtil signUp(String userName, String password, Integer identity);
+
+//  修改密码
+    ReturnUtil changePassword(String password, String userId);
+
+//根据id查找user
     ReturnUtil findUserByUserId(String userId);
 
-    ReturnUtil addUser(String userName, String password, Integer identity);
 //
 //    ReturnUtil checkUserName(String userName);
 
-//    ReturnUtil signUp(String userName, String password, Integer identity, Integer departId);
+
 }

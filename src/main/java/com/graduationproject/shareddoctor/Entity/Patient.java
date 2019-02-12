@@ -19,7 +19,6 @@ import javax.persistence.Id;
 @Component
 public class Patient {
     @Id
-    @GeneratedValue
     @Column(name = "patient_id")
     public String patientId;
 
