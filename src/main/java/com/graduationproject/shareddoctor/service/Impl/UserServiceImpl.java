@@ -1,11 +1,7 @@
 package com.graduationproject.shareddoctor.service.Impl;
 
-import com.graduationproject.shareddoctor.Entity.Doctor;
-import com.graduationproject.shareddoctor.Entity.Patient;
-import com.graduationproject.shareddoctor.Entity.User;
-import com.graduationproject.shareddoctor.respository.DoctorRepository;
-import com.graduationproject.shareddoctor.respository.PatientRepository;
-import com.graduationproject.shareddoctor.respository.UserRepository;
+import com.graduationproject.shareddoctor.Entity.*;
+import com.graduationproject.shareddoctor.respository.*;
 import com.graduationproject.shareddoctor.service.UserService;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +24,13 @@ public class UserServiceImpl implements UserService {
     PatientRepository patientRepository;
     @Autowired
     DoctorRepository doctorRepository;
+    @Autowired
+    LocationRepository locationRepository;
+    @Autowired
+    BalanceRepository balanceRepository;
+    @Autowired
+    QualificationRepository qualificationRepository;
+
 
     @Override
     public ReturnUtil findUserByUserId(String userId) {
@@ -57,6 +60,53 @@ public class UserServiceImpl implements UserService {
         return ReturnUtil.ok();
     }
 
+    @Override
+    public ReturnUtil signUp(String userName, String password, Integer identity) {
+        //对用户输入进行合法性检查
+        if (userName.length() > 50) return ReturnUtil.err("用户名过长！");
+        if (password.length() > 50) return ReturnUtil.err("密码过长！");
+        if (identity != 0 && identity != 1) return ReturnUtil.err("身份认证错误！");
+        if (userRepository.findUserByUserName(userName) != null) return ReturnUtil.err("用户名重复，请更换用户名！");
+        User user = new User();
+        user.setUserName(userName);
+        user.setPassword(password);
+        user.setIdentity(identity);
+        user.setCreateDate(new Date());
+        userRepository.save(user);
+        String userId=userRepository.findUserByUserName(userName).userId;
+        //患者
+        if (identity == 0) {
+            Location location = new Location();
+            locationRepository.save(location);
+            Balance balance = new Balance();
+            balanceRepository.save(balance);
+
+
+            Patient patient = new Patient();
+            patient.setPatientId(userId);
+            patient.setLocationId(location.locationId);
+            patient.setBalanceId(balance.balanceId);
+            patientRepository.save(patient);
+        }
+        //医生
+        if (identity == 1) {
+            Location location = new Location();
+            locationRepository.save(location);
+            Balance balance = new Balance();
+            balanceRepository.save(balance);
+            Qualification qualification=new Qualification();
+            qualificationRepository.save(qualification);
+
+            Doctor doctor = new Doctor();
+            doctor.setDoctorId(userId);
+            doctor.setLocationId(location.locationId);
+            doctor.setLocationId(location.locationId);
+            doctor.setBalanceId(balance.balanceId);
+            doctor.setQualificationId(qualification.qualificationId);
+            doctorRepository.save(doctor);
+        }
+        return ReturnUtil.ok("注册成功");
+    }
 
     @Override
     public ReturnUtil changePassword(String password,String userId){
@@ -81,32 +131,5 @@ public class UserServiceImpl implements UserService {
 //        return ReturnUtil.ok();
 //    }
 
-    @Override
-    public ReturnUtil signUp(String userName, String password, Integer identity) {
-        //对用户输入进行合法性检查
-        if (userName.length() > 50) return ReturnUtil.err("用户名过长！");
-        if (password.length() > 50) return ReturnUtil.err("密码过长！");
-        if (identity != 0 && identity != 1) return ReturnUtil.err("身份认证错误！");
-        if (userRepository.findUserByUserName(userName) != null) return ReturnUtil.err("用户名重复，请更换用户名！");
-        User user = new User();
-        user.setUserName(userName);
-        user.setPassword(password);
-        user.setIdentity(identity);
-        user.setCreateDate(new Date());
-        userRepository.save(user);
-        String userId=userRepository.findUserByUserName(userName).userId;
-        if (identity == 0) {
-            Patient patient = new Patient();
-            patient.setPatientId(userId);
-            patient.setPatientName(userName);
-            patientRepository.save(patient);
-        }
-        if (identity == 1) {
-            Doctor doctor = new Doctor();
-            doctor.setDoctorId(userId);
-            doctor.setDoctorName(userName);
-            doctorRepository.save(doctor);
-        }
-        return ReturnUtil.ok("注册成功");
-    }
+
 }

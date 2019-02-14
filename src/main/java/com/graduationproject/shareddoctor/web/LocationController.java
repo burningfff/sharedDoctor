@@ -29,4 +29,14 @@ public class LocationController {
         return locationService.findLocationByLocationId(location.getLocationId());
     }
 
+//    @PostMapping("/location/updateLocationByPatientId")
+//    public ReturnUtil updateLocationByLocationId(@RequestBody Location location){
+//        return locationService.updateLocationByLocationId(location.getProvince(),location.getCity(),location.getDistrict(),location.getLocationDetail(),location.getLocationId());
+//    }
+
+    @PostMapping("/location/addLocation")
+    public ReturnUtil addLocation(@RequestBody Location location){
+        return locationService.addLocation(location.getProvince(),location.getCity(),location.getDistrict(),location.getLocationDetail());
+    }
+
 }

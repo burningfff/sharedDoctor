@@ -26,14 +26,17 @@ public class Doctor {
     @Column(name = "doctor_name")
     public String doctorName;
 
+    @Column(name = "gender")
+    public Integer gender;
+
     @Column(name = "identity_card")
     public Integer identityCard;
 
-    @Column(name = "depart_id")
-    public Integer departId;
+    @Column(name = "age")
+    public Integer age;
 
     @Column(name = "image_url")
-    public String image;
+    public String imageUrl;
 
     @Column(name = "phone")
     public String phone;
@@ -42,16 +45,16 @@ public class Doctor {
     public String email;
 
     @Column(name = "location_id")
-    public Integer locationId;
+    public String locationId;
 
     @Column(name = "balance_id")
-    public Integer balanceId;
+    public String balanceId;
 
     @Column(name = "evaluation")
     public Integer evaluation;
 
-    @Column(name = "is_confirmed")
-    public Integer isConfirmed;
+    @Column(name = "qualification_id")
+    public String qualificationId;
 
     @Column(name = "introduction")
     public String introduction;

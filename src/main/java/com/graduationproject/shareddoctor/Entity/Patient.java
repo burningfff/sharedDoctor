@@ -25,6 +25,9 @@ public class Patient {
     @Column(name = "patient_name")
     public String patientName;
 
+    @Column(name = "gender")
+    public String gender;
+
     @Column(name = "identity_card")
     public Integer identityCard;
 
@@ -32,7 +35,7 @@ public class Patient {
     public Integer age;
 
     @Column(name = "image_url")
-    public String image;
+    public String imageUrl;
 
     @Column(name = "phone")
     public String phone;
@@ -41,10 +44,10 @@ public class Patient {
     public String email;
 
     @Column(name = "location_id")
-    public Integer locationId;
+    public String locationId;
 
     @Column(name = "balance_id")
-    public Integer balanceId;
+    public String balanceId;
 
     @Column(name = "illness_id")
     public String illnessId;

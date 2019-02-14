@@ -31,8 +31,8 @@ public class Qualification {
     @Column(name = "qualification_id",length = 32)
     public String qualificationId;
 
-    @Column(name = "doctor_id")
-    public String doctorId;
+    @Column(name = "depart_id")
+    public Integer departId;
 
     @Column(name = "image_url")
     public String imageUrl;
@@ -43,4 +43,6 @@ public class Qualification {
     @Column(name = "hospital_id")
     public Integer hospitalId;
 
+    @Column(name = "is_confirmed")
+    public Integer isConfirmed;
 }
