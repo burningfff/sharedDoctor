@@ -45,12 +45,12 @@ public class UserServiceImpl implements UserService {
         if (!user.password.equals(password)) return ReturnUtil.err("密码错误！");
         if(user.identity==0){
             //返回病人信息
-            Patient patient = patientRepository.findPatientByPatientName(user.userName);
+            Patient patient = patientRepository.findPatientByPatientId(user.userId);
             return ReturnUtil.ok(patient);
         }
         else if(user.identity==1){
             //返回教师信息
-            Doctor doctor = doctorRepository.findDoctorByDoctorName(user.userName);
+            Doctor doctor = doctorRepository.findDoctorByDoctorId(user.userId);
             return ReturnUtil.ok(doctor);
         }
         else if(user.identity==2){
