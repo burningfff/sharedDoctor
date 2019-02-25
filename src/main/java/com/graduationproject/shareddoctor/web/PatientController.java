@@ -6,10 +6,8 @@ import com.graduationproject.shareddoctor.service.PatientService;
 import com.graduationproject.shareddoctor.service.UserService;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @program: sharedDoctor
@@ -30,4 +28,8 @@ public class PatientController {
         return patientService.findPatientByPatientId(patient.getPatientId());
     }
 
+    @PostMapping("/patient/addFromExcel")
+    public ReturnUtil addFromExcel(@RequestParam MultipartFile file) throws Exception {
+        return patientService.addFromExcel(file);
+    }
 }

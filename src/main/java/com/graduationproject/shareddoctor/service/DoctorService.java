@@ -1,9 +1,12 @@
 package com.graduationproject.shareddoctor.service;
 
 
+import com.github.pagehelper.Page;
 import com.graduationproject.shareddoctor.Entity.Doctor;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
-import io.swagger.models.auth.In;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Iterator;
 
 /**
  * @program: sharedDoctor
@@ -27,4 +30,14 @@ public interface DoctorService {
 
     //更新医生头像照片
     ReturnUtil updateDoctorImageUrl(String imageUrl, String doctorId);
+
+    //从文件导入医护人员
+    ReturnUtil addFromExcel(MultipartFile file);
+
+    //删除
+    ReturnUtil deleteDoctor(String doctorId);
+
+    ReturnUtil findAllDoctor(Integer pageNum, Integer pageSize);
+
+    Long getAllDoctorNum();
 }

@@ -11,5 +11,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface DepartRepository extends JpaRepository<Depart,Integer> {
 
     Depart findDepartByDepartId(Integer departId);
-    
+
+    Depart findDepartByDepartName(String departName);
+
+
+
 }
