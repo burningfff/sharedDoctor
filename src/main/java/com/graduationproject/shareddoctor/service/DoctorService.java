@@ -18,6 +18,9 @@ public interface DoctorService {
     //根据id查找Doctor
     ReturnUtil findDoctorByDoctorId(String doctorId);
 
+    //更新医生所有资料
+    ReturnUtil updateDoctorAllData(String doctorName, Integer gender, Integer age, String phone, String email, String introduction, String doctorId);
+
     //更新医生基础资料
     ReturnUtil updateDoctorBasicData(String doctorName, Integer gender, Integer age, Integer identityCard, String doctorId);
 

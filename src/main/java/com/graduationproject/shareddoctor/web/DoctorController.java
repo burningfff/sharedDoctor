@@ -37,6 +37,11 @@ public class DoctorController {
         return doctorService.deleteDoctor(doctor.getDoctorId());
     }
 
+    @PostMapping("/doctor/updateDoctorAllData")
+    public ReturnUtil updateDoctorAllData(@RequestBody Doctor doctor){
+        return doctorService.updateDoctorAllData(doctor.getDoctorName(),doctor.getGender(),doctor.getAge(),doctor.getPhone(),doctor.getEmail(),doctor.getIntroduction(),doctor.getDoctorId());
+    }
+
     @PostMapping("/doctor/updateDoctorBasicData")
     public ReturnUtil updateDoctorBasicData(@RequestBody Doctor doctor){
         return doctorService.updateDoctorBasicData(doctor.getDoctorName(),doctor.getGender(),doctor.getAge(),doctor.getIdentityCard(),doctor.getDoctorId());
