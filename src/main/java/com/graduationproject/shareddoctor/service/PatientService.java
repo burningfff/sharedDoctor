@@ -18,5 +18,5 @@ public interface PatientService {
     //从文件导入患者
     ReturnUtil addFromExcel(MultipartFile file);
 
-
+    ReturnUtil findAllPatient(Integer pageNum, Integer pageSize);
 }

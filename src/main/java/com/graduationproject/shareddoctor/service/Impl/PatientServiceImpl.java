@@ -14,6 +14,10 @@ import com.graduationproject.shareddoctor.utils.PoiUtils;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -43,6 +47,13 @@ public class PatientServiceImpl implements PatientService {
         return ReturnUtil.ok(patient);
     }
 
+    @Override
+    public ReturnUtil findAllPatient(Integer pageNum, Integer pageSize){
+        Sort sort = new Sort(Sort.Direction.DESC, "patientId");
+        Pageable pageable = new PageRequest(pageNum, pageSize, sort);
+        return ReturnUtil.ok(patientRepository.findAll(pageable));
+    }
+    
     @Override
     public ReturnUtil addFromExcel(MultipartFile file){
         List<Patient> patients = PoiUtils.importPatient2List(file);

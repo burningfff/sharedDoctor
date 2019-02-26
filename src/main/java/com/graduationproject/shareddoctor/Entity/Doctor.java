@@ -5,10 +5,8 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 /**
  * @program: sharedDoctor
  * @author: 杨帆
@@ -59,4 +57,7 @@ public class Doctor {
     @Column(name = "introduction")
     public String introduction;
 
+    @OneToOne
+    @JoinColumn(name="doctor_id",referencedColumnName="user_id")
+    public User user;
 }

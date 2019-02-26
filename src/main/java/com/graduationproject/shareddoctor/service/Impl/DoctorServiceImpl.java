@@ -1,6 +1,5 @@
 package com.graduationproject.shareddoctor.service.Impl;
 
-import com.github.pagehelper.Page;
 import com.graduationproject.shareddoctor.Entity.*;
 import com.graduationproject.shareddoctor.respository.*;
 import com.graduationproject.shareddoctor.service.DoctorService;

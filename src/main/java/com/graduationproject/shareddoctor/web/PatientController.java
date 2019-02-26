@@ -4,6 +4,7 @@ import com.graduationproject.shareddoctor.Entity.Patient;
 import com.graduationproject.shareddoctor.Entity.User;
 import com.graduationproject.shareddoctor.service.PatientService;
 import com.graduationproject.shareddoctor.service.UserService;
+import com.graduationproject.shareddoctor.utils.Page;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,5 +32,10 @@ public class PatientController {
     @PostMapping("/patient/addFromExcel")
     public ReturnUtil addFromExcel(@RequestParam MultipartFile file) throws Exception {
         return patientService.addFromExcel(file);
+    }
+
+    @PostMapping("/patient/findAllPatient")
+    public ReturnUtil findAllDoctor(@RequestBody Page page){
+        return patientService.findAllPatient(page.pageNum,page.pageSize);
     }
 }
