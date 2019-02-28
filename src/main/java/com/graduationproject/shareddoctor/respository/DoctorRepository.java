@@ -19,4 +19,5 @@ public interface DoctorRepository extends JpaRepository<Doctor,String> {
 
     Doctor findDoctorByDoctorName(String doctorName);
 
+    void deleteDoctorByDoctorId(String doctorId);
 }

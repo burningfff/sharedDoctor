@@ -24,7 +24,7 @@ public class Patient {
     public String patientName;
 
     @Column(name = "gender")
-    public Integer gender;
+    public String gender;
 
     @Column(name = "identity_card")
     public Integer identityCard;
@@ -53,4 +53,13 @@ public class Patient {
     @OneToOne
     @JoinColumn(name="patient_id",referencedColumnName="user_id")
     public User user;
+
+    @OneToOne
+    @JoinColumn(name="location_id",referencedColumnName="location_id", insertable=false, updatable=false)
+    public Location location;
+
+    @OneToOne
+    @JoinColumn(name="balance_id",referencedColumnName="balance_id", insertable=false, updatable=false)
+    public Balance balance;
+
 }

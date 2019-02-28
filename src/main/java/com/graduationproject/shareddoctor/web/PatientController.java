@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * @program: sharedDoctor
+ * @program: sharedPatient
  * @author: 杨帆
  * @create: 2019/1/10
  **/
@@ -35,7 +35,12 @@ public class PatientController {
     }
 
     @PostMapping("/patient/findAllPatient")
-    public ReturnUtil findAllDoctor(@RequestBody Page page){
+    public ReturnUtil findAllPatient(@RequestBody Page page){
         return patientService.findAllPatient(page.pageNum,page.pageSize);
+    }
+
+    @PostMapping("/patient/deletePatient")
+    public ReturnUtil deletePatient (@RequestBody Patient patient){
+        return patientService.deletePatient(patient.getPatientId());
     }
 }

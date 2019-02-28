@@ -21,6 +21,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Date;
 
@@ -45,6 +46,17 @@ public class PatientServiceImpl implements PatientService {
     public ReturnUtil findPatientByPatientId(String patientId) {
         Patient patient=patientRepository.findPatientByPatientId(patientId);
         return ReturnUtil.ok(patient);
+    }
+
+    @Transactional
+    @Override
+    public ReturnUtil deletePatient(String patientId){
+        Patient patient= patientRepository.findPatientByPatientId(patientId);
+        patientRepository.deletePatientByPatientId(patientId);
+        userRepository.deleteUserByUserId(patientId);
+        balanceRepository.deleteBalanceByBalanceId(patient.balanceId);
+        locationRepository.deleteLocationByLocationId(patient.locationId);
+        return ReturnUtil.ok("删除成功");
     }
 
     @Override

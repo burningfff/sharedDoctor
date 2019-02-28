@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public ReturnUtil updateDoctorAllData(String doctorName, Integer gender, Integer age,
+    public ReturnUtil updateDoctorAllData(String doctorName, String gender, Integer age,
                                           String phone, String email,String introduction, String doctorId){
         Doctor doctor=doctorRepository.findDoctorByDoctorId(doctorId);
         doctor.setDoctorName(doctorName);
@@ -57,7 +58,7 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public ReturnUtil updateDoctorBasicData(String doctorName, Integer gender, Integer age
+    public ReturnUtil updateDoctorBasicData(String doctorName, String gender, Integer age
                                             ,Integer identityCard, String doctorId){
         Doctor doctor=doctorRepository.findDoctorByDoctorId(doctorId);
         doctor.setDoctorName(doctorName);
@@ -128,10 +129,16 @@ public class DoctorServiceImpl implements DoctorService {
         return ReturnUtil.ok();
     }
 
+    @Transactional
     @Override
     public ReturnUtil deleteDoctor(String doctorId){
+        Doctor doctor = doctorRepository.findDoctorByDoctorId(doctorId);
         doctorRepository.deleteById(doctorId);
-        return ReturnUtil.ok();
+        userRepository.deleteUserByUserId(doctorId);
+        balanceRepository.deleteBalanceByBalanceId(doctor.balanceId);
+        locationRepository.deleteLocationByLocationId(doctor.locationId);
+        qualificationRepository.deleteQualificationByQualificationId(doctor.qualificationId);
+        return ReturnUtil.ok("删除成功");
     }
 
     @Override

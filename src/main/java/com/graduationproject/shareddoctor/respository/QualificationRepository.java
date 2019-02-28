@@ -12,4 +12,5 @@ public interface QualificationRepository extends JpaRepository<Qualification,Str
 
     Qualification findQualificationByQualificationId(String qualificationId);
 
+    void deleteQualificationByQualificationId(String qualificationId);
 }

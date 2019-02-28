@@ -19,10 +19,10 @@ public interface DoctorService {
     ReturnUtil findDoctorByDoctorId(String doctorId);
 
     //更新医生所有资料
-    ReturnUtil updateDoctorAllData(String doctorName, Integer gender, Integer age, String phone, String email, String introduction, String doctorId);
+    ReturnUtil updateDoctorAllData(String doctorName, String gender, Integer age, String phone, String email, String introduction, String doctorId);
 
     //更新医生基础资料
-    ReturnUtil updateDoctorBasicData(String doctorName, Integer gender, Integer age, Integer identityCard, String doctorId);
+    ReturnUtil updateDoctorBasicData(String doctorName, String gender, Integer age, Integer identityCard, String doctorId);
 
     //更新医生联系方式
     ReturnUtil updateDoctorContact(String phone, String email, String locationId, String doctorId);
@@ -39,6 +39,7 @@ public interface DoctorService {
     //删除
     ReturnUtil deleteDoctor(String doctorId);
 
+    //根据页码和页面大小返回当前页所有医护人员信息
     ReturnUtil findAllDoctor(Integer pageNum, Integer pageSize);
 
     Long getAllDoctorNum();

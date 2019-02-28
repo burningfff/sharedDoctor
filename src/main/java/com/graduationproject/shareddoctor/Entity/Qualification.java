@@ -5,10 +5,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 
@@ -45,4 +42,17 @@ public class Qualification {
 
     @Column(name = "is_confirmed")
     public Integer isConfirmed;
+
+    @ManyToOne
+    @JoinColumn(name="depart_id",referencedColumnName="depart_id", insertable=false, updatable=false)
+    public Depart depart;
+
+    @ManyToOne
+    @JoinColumn(name="position_id",referencedColumnName="position_id", insertable=false, updatable=false)
+    public Position position;
+
+    @ManyToOne
+    @JoinColumn(name="hospital_id",referencedColumnName="hospital_id", insertable=false, updatable=false)
+    public Hospital hospital;
+
 }

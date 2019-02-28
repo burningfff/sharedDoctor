@@ -11,5 +11,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface LocationRepository extends JpaRepository<Location,String> {
 
     Location findLocationByLocationId(String locationId);
-    
+
+    void deleteLocationByLocationId(String locationId);
 }

@@ -18,5 +18,8 @@ public interface PatientService {
     //从文件导入患者
     ReturnUtil addFromExcel(MultipartFile file);
 
+    //根据页码和页面大小返回当前页所有患者信息
     ReturnUtil findAllPatient(Integer pageNum, Integer pageSize);
+
+    ReturnUtil deletePatient(String patientId);
 }

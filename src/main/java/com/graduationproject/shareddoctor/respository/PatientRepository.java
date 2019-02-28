@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PatientRepository extends JpaRepository<Patient,String> {
 
+    void deletePatientByPatientId(String patientId);
+
     Patient findPatientByPatientId(String patientId);
 
     Patient findPatientByPatientName(String patientName);

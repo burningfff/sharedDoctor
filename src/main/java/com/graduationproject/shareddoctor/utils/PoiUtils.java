@@ -54,6 +54,9 @@ public class PoiUtils {
                                     case 0:
                                         patient.setPatientName(cellValue);
                                         break;
+                                    case 1:
+                                        patient.setGender(cellValue);
+
 //                                    case 3:
 //                                        patient.setEmail(cellValue);
 //                                        break;
@@ -64,8 +67,6 @@ public class PoiUtils {
 //                                DecimalFormat df = new DecimalFormat("0");
 //                                String phone = df.format(cell.getNumericCellValue());
                                 switch (k) {
-                                    case 1:
-                                        patient.setGender((int)cell.getNumericCellValue());
 
                                     case 2:
                                         patient.setAge((int)cell.getNumericCellValue());
@@ -116,6 +117,9 @@ public class PoiUtils {
                                     case 0:
                                         doctor.setDoctorName(cellValue);
                                         break;
+                                    case 1:
+                                        doctor.setGender(cellValue);
+
                                 }
                             }
                             break;
@@ -123,8 +127,6 @@ public class PoiUtils {
                                 DecimalFormat df = new DecimalFormat("0");
                                 String phone = df.format(cell.getNumericCellValue());
                                 switch (k) {
-                                    case 1:
-                                        doctor.setGender((int)cell.getNumericCellValue());
 
                                     case 2:
                                         doctor.setAge((int)cell.getNumericCellValue());
