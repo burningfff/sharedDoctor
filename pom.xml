@@ -52,6 +52,12 @@
             <optional>true</optional>
         </dependency>
 
+        <!--引入bcrypt依赖-->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
 
         <!--引入JPA的依赖关系-->
         <dependency>

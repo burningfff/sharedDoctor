@@ -4,10 +4,10 @@ import com.graduationproject.shareddoctor.Entity.*;
 import com.graduationproject.shareddoctor.respository.*;
 import com.graduationproject.shareddoctor.service.UserService;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
 
 /**
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
     public ReturnUtil signIn(String userName, String password) {
         User user = userRepository.findUserByUserName(userName);
         if (user == null) return ReturnUtil.err("用户不存在!");
-        if (!user.password.equals(password)) return ReturnUtil.err("密码错误！");
+        if (!BCrypt.checkpw(password,user.password)) return ReturnUtil.err("密码错误！");
         if(user.identity==0){
             //返回病人信息
             Patient patient = patientRepository.findPatientByPatientId(user.userId);
@@ -63,13 +63,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public ReturnUtil signUp(String userName, String password, Integer identity) {
         //对用户输入进行合法性检查
-        if (userName.length() > 50) return ReturnUtil.err("用户名过长！");
-        if (password.length() > 50) return ReturnUtil.err("密码过长！");
+        if (userName.length() > 16) return ReturnUtil.err("用户名过长！");
+        if (password.length() > 16) return ReturnUtil.err("密码过长！");
+        if (userName.length() < 6) return ReturnUtil.err("用户名过短！");
+        if (password.length() < 6) return ReturnUtil.err("密码过短！");
         if (identity != 0 && identity != 1) return ReturnUtil.err("身份认证错误！");
         if (userRepository.findUserByUserName(userName) != null) return ReturnUtil.err("用户名重复，请更换用户名！");
         User user = new User();
         user.setUserName(userName);
-        user.setPassword(password);
+        String bcryptPassword= BCrypt.hashpw( password,BCrypt.gensalt());
+        user.setPassword(bcryptPassword);
         user.setIdentity(identity);
         user.setCreateDate(new Date());
         userRepository.save(user);
