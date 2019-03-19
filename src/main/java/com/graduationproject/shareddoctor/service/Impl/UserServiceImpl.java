@@ -98,6 +98,7 @@ public class UserServiceImpl implements UserService {
             Balance balance = new Balance();
             balanceRepository.save(balance);
             Qualification qualification=new Qualification();
+            qualification.setIsConfirmed(2);
             qualificationRepository.save(qualification);
 
             Doctor doctor = new Doctor();

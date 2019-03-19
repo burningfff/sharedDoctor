@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * @program: sharedPatient
+ * @program: sharedDoctor
  * @author: 杨帆
  * @create: 2019/1/10
  **/
@@ -43,4 +43,27 @@ public class PatientController {
     public ReturnUtil deletePatient (@RequestBody Patient patient){
         return patientService.deletePatient(patient.getPatientId());
     }
+
+    @PostMapping("/patient/updatePatientAllData")
+    public ReturnUtil updatePatientAllData(@RequestBody Patient patient){
+        return patientService.updatePatientAllData(patient.getPatientName(),patient.getGender(),
+                patient.getAge(),patient.getIdentityCard(),patient.getPhone(),patient.getEmail(),patient.getPatientId());
+    }
+
+    @PostMapping("/patient/updatePatientBasicData")
+    public ReturnUtil updatePatientBasicData(@RequestBody Patient patient){
+        return patientService.updatePatientBasicData(patient.getPatientName(),patient.getGender(),patient.getAge(),
+                patient.getIdentityCard(),patient.getPatientId());
+    }
+
+    @PostMapping("/patient/updatePatientContact")
+    public ReturnUtil updatePatientContact(@RequestBody Patient patient){
+        return patientService.updatePatientContact(patient.getPhone(),patient.getEmail(),patient.getLocationId(),patient.getPatientId());
+    }
+
+    @PostMapping("/patient/updatePatientImageUrl")
+    public ReturnUtil updatePatientImageUrl(@RequestBody Patient patient){
+        return patientService.updatePatientImageUrl(patient.getImageUrl(),patient.getPatientId());
+    }
+    
 }

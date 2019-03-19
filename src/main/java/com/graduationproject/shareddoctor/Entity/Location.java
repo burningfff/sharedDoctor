@@ -36,8 +36,8 @@ public class Location {
     @Column(name = "city")
     public String city;
 
-    @Column(name = "district")
-    public String district;
+    @Column(name = "area")
+    public String area;
 
     @Column(name = "location_detail")
     public String locationDetail;

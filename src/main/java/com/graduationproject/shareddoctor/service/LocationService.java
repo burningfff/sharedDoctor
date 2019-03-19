@@ -13,10 +13,10 @@ public interface LocationService {
     ReturnUtil findLocationByLocationId(String locationId);
 
     //修改地址
-//    ReturnUtil updateLocationByLocationId(String province,String city,String district,String locationDetail,String locationId);
+    ReturnUtil updateLocationByLocationId(String province,String city,String area,String locationDetail,String locationId);
 
-    ReturnUtil addLocation(String province,String city,String district,String locationDetail);
-
+    //新增地址
+    ReturnUtil addLocation(String province,String city,String area,String locationDetail);
 
 }
 

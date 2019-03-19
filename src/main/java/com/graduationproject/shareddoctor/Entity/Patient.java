@@ -27,7 +27,7 @@ public class Patient {
     public String gender;
 
     @Column(name = "identity_card")
-    public Integer identityCard;
+    public String identityCard;
 
     @Column(name = "age")
     public Integer age;

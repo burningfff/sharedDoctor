@@ -28,9 +28,6 @@ public class Qualification {
     @Column(name = "qualification_id",length = 32)
     public String qualificationId;
 
-    @Column(name = "depart_id")
-    public Integer departId;
-
     @Column(name = "image_url")
     public String imageUrl;
 
@@ -42,10 +39,6 @@ public class Qualification {
 
     @Column(name = "is_confirmed")
     public Integer isConfirmed;
-
-    @ManyToOne
-    @JoinColumn(name="depart_id",referencedColumnName="depart_id", insertable=false, updatable=false)
-    public Depart depart;
 
     @ManyToOne
     @JoinColumn(name="position_id",referencedColumnName="position_id", insertable=false, updatable=false)

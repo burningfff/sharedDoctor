@@ -5,6 +5,7 @@ import com.graduationproject.shareddoctor.respository.*;
 import com.graduationproject.shareddoctor.service.DoctorService;
 import com.graduationproject.shareddoctor.utils.PoiUtils;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.PageRequest;
@@ -44,12 +45,13 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public ReturnUtil updateDoctorAllData(String doctorName, String gender, Integer age,
+    public ReturnUtil updateDoctorAllData(String doctorName, String gender, Integer age,String identityCard,
                                           String phone, String email,String introduction, String doctorId){
         Doctor doctor=doctorRepository.findDoctorByDoctorId(doctorId);
         doctor.setDoctorName(doctorName);
         doctor.setGender(gender);
         doctor.setAge(age);
+        doctor.setIdentityCard(identityCard);
         doctor.setPhone(phone);
         doctor.setEmail(email);
         doctor.setIntroduction(introduction);
@@ -59,7 +61,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public ReturnUtil updateDoctorBasicData(String doctorName, String gender, Integer age
-                                            ,Integer identityCard, String doctorId){
+                                            ,String identityCard, String doctorId){
         Doctor doctor=doctorRepository.findDoctorByDoctorId(doctorId);
         doctor.setDoctorName(doctorName);
         doctor.setGender(gender);
@@ -106,7 +108,8 @@ public class DoctorServiceImpl implements DoctorService {
         for (Doctor doctor : doctors) {
             User user = new User();
             user.setUserName(doctor.doctorName);
-            user.setPassword(doctor.doctorName);
+            String bcryptPassword= BCrypt.hashpw(doctor.doctorName,BCrypt.gensalt());
+            user.setPassword(bcryptPassword);
             user.setIdentity(1);
             user.setCreateDate(new Date());
             userRepository.save(user);
@@ -149,7 +152,9 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public Long getAllDoctorNum() {
-        return doctorRepository.count();
+    public ReturnUtil findAllDoctorByDepartId(Integer departId){
+        return ReturnUtil.ok(doctorRepository.findAllByDepartId(departId));
     }
+
+
 }

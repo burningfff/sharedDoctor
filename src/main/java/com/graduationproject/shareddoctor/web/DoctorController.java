@@ -1,6 +1,7 @@
 package com.graduationproject.shareddoctor.web;
 
 import com.graduationproject.shareddoctor.Entity.Doctor;
+import com.graduationproject.shareddoctor.Entity.Qualification;
 import com.graduationproject.shareddoctor.service.DoctorService;
 import com.graduationproject.shareddoctor.utils.Page;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
@@ -32,6 +33,11 @@ public class DoctorController {
         return doctorService.findAllDoctor(page.pageNum,page.pageSize);
     }
 
+    @PostMapping("/doctor/findAllDoctorByDepartId")
+    public ReturnUtil findAllDoctorByDepartId(@RequestBody Doctor doctor){
+        return doctorService.findAllDoctorByDepartId(doctor.departId);
+    }
+
     @PostMapping("/doctor/deleteDoctor")
     public ReturnUtil deleteDoctor (@RequestBody Doctor doctor){
         return doctorService.deleteDoctor(doctor.getDoctorId());
@@ -39,7 +45,7 @@ public class DoctorController {
 
     @PostMapping("/doctor/updateDoctorAllData")
     public ReturnUtil updateDoctorAllData(@RequestBody Doctor doctor){
-        return doctorService.updateDoctorAllData(doctor.getDoctorName(),doctor.getGender(),doctor.getAge(),doctor.getPhone(),doctor.getEmail(),doctor.getIntroduction(),doctor.getDoctorId());
+        return doctorService.updateDoctorAllData(doctor.getDoctorName(),doctor.getGender(),doctor.getAge(),doctor.getIdentityCard(),doctor.getPhone(),doctor.getEmail(),doctor.getIntroduction(),doctor.getDoctorId());
     }
 
     @PostMapping("/doctor/updateDoctorBasicData")

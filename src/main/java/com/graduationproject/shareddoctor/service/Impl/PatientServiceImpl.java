@@ -1,9 +1,6 @@
 package com.graduationproject.shareddoctor.service.Impl;
 
-import com.graduationproject.shareddoctor.Entity.Balance;
-import com.graduationproject.shareddoctor.Entity.Location;
-import com.graduationproject.shareddoctor.Entity.Patient;
-import com.graduationproject.shareddoctor.Entity.User;
+import com.graduationproject.shareddoctor.Entity.*;
 import com.graduationproject.shareddoctor.respository.BalanceRepository;
 import com.graduationproject.shareddoctor.respository.LocationRepository;
 import com.graduationproject.shareddoctor.respository.PatientRepository;
@@ -12,6 +9,7 @@ import com.graduationproject.shareddoctor.service.PatientService;
 import com.graduationproject.shareddoctor.utils.IdUtil;
 import com.graduationproject.shareddoctor.utils.PoiUtils;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.Page;
@@ -77,7 +75,8 @@ public class PatientServiceImpl implements PatientService {
         for (Patient patient : patients) {
             User user = new User();
             user.setUserName(patient.patientName);
-            user.setPassword(patient.patientName);
+            String bcryptPassword= BCrypt.hashpw( patient.patientName,BCrypt.gensalt());
+            user.setPassword(bcryptPassword);
             user.setIdentity(0);
             user.setCreateDate(new Date());
             userRepository.save(user);
@@ -92,6 +91,49 @@ public class PatientServiceImpl implements PatientService {
             patient.setBalanceId(balance.balanceId);
             patientRepository.save(patient);
         }
+        return ReturnUtil.ok();
+    }
+
+    @Override
+    public ReturnUtil updatePatientAllData(String patientName, String gender, Integer age,String identityCard,
+                                          String phone, String email, String patientId){
+        Patient patient=patientRepository.findPatientByPatientId(patientId);
+        patient.setPatientName(patientName);
+        patient.setGender(gender);
+        patient.setAge(age);
+        patient.setIdentityCard(identityCard);
+        patient.setPhone(phone);
+        patient.setEmail(email);
+        patientRepository.save(patient);
+        return ReturnUtil.ok();
+    }
+
+    @Override
+    public ReturnUtil updatePatientBasicData(String patientName, String gender, Integer age ,String identityCard, String patientId){
+        Patient patient=patientRepository.findPatientByPatientId(patientId);
+        patient.setPatientName(patientName);
+        patient.setGender(gender);
+        patient.setAge(age);
+        patient.setIdentityCard(identityCard);
+        patientRepository.save(patient);
+        return ReturnUtil.ok();
+    }
+
+    @Override
+    public ReturnUtil updatePatientContact( String phone, String email, String locationId, String patientId){
+        Patient patient=patientRepository.findPatientByPatientId(patientId);
+        patient.setPhone(phone);
+        patient.setEmail(email);
+        //缺更新地址
+        patientRepository.save(patient);
+        return ReturnUtil.ok();
+    }
+
+    @Override
+    public ReturnUtil updatePatientImageUrl(String imageUrl, String patientId){
+        Patient patient=patientRepository.findPatientByPatientId(patientId);
+        patient.setImageUrl(imageUrl);
+        patientRepository.save(patient);
         return ReturnUtil.ok();
     }
 }

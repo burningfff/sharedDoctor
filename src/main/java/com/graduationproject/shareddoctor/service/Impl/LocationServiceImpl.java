@@ -25,27 +25,25 @@ public class LocationServiceImpl implements LocationService {
         return ReturnUtil.ok(location);
     }
 
-//    @Override
-//    public ReturnUtil updateLocationByLocationId(String province,String city,String district,String locationDetail,String locationId){
-//        Location location = locationRepository.findLocationByLocationId(locationId);
-//        location.setProvince(province);
-//        location.setCity(city);
-//        location.setDistrict(district);
-//        location.setLocationDetail(locationDetail);
-//        locationRepository.save(location);
-//        System.out.println(location.locationId);
-//        return ReturnUtil.ok();
-//    }
+    @Override
+    public ReturnUtil updateLocationByLocationId(String province,String city,String area,String locationDetail,String locationId){
+        Location location = locationRepository.findLocationByLocationId(locationId);
+        location.setProvince(province);
+        location.setCity(city);
+        location.setArea(area);
+        location.setLocationDetail(locationDetail);
+        locationRepository.save(location);
+        return ReturnUtil.ok();
+    }
 
     @Override
-    public ReturnUtil addLocation(String province,String city,String district,String locationDetail){
+    public ReturnUtil addLocation(String province,String city,String area,String locationDetail){
         Location location = new Location();
         location.setProvince(province);
         location.setCity(city);
-        location.setDistrict(district);
+        location.setArea(area);
         location.setLocationDetail(locationDetail);
         locationRepository.save(location);
-        System.out.println(location.locationId);
         return ReturnUtil.ok();
     }
 

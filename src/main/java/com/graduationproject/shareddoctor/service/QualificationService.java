@@ -13,4 +13,7 @@ public interface QualificationService {
 
     //根据id查找Qualification
     ReturnUtil findQualificationByQualificationId(String qualificationId);
+
+    //更新认证状态
+    ReturnUtil updateQualificationByQualificationId(String qualificationId, Integer isConfirmed);
 }

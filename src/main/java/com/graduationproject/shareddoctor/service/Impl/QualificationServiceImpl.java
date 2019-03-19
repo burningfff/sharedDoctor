@@ -24,4 +24,14 @@ public class QualificationServiceImpl implements QualificationService {
         Qualification qualification=qualificationRepository.findQualificationByQualificationId(qualificationId);
         return ReturnUtil.ok(qualification);
     }
+
+    @Override
+    public ReturnUtil updateQualificationByQualificationId(String qualificationId,Integer isConfirmed) {
+        Qualification qualification=qualificationRepository.findQualificationByQualificationId(qualificationId);
+        qualification.setIsConfirmed(isConfirmed);
+        qualificationRepository.save(qualification);
+        return ReturnUtil.ok();
+    }
+
+
 }

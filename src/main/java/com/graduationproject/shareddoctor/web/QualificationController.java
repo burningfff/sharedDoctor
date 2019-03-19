@@ -29,4 +29,11 @@ public class QualificationController {
         return qualificationService.findQualificationByQualificationId(qualification.getQualificationId());
     }
 
+    @PostMapping("/qualification/updateQualificationByQualificationId")
+    public ReturnUtil updateQualificationByQualificationId(@RequestBody Qualification qualification){
+        return qualificationService.updateQualificationByQualificationId(qualification.getQualificationId(),qualification.getIsConfirmed());
+    }
+
+
+
 }

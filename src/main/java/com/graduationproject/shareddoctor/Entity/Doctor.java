@@ -1,5 +1,6 @@
 package com.graduationproject.shareddoctor.Entity;
 
+import com.graduationproject.shareddoctor.utils.Page;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
@@ -28,7 +29,7 @@ public class Doctor {
     public String gender;
 
     @Column(name = "identity_card")
-    public Integer identityCard;
+    public String identityCard;
 
     @Column(name = "age")
     public Integer age;
@@ -57,9 +58,16 @@ public class Doctor {
     @Column(name = "introduction")
     public String introduction;
 
+    @Column(name = "depart_id")
+    public Integer departId;
+
     @OneToOne
     @JoinColumn(name="doctor_id",referencedColumnName="user_id")
     public User user;
+
+    @ManyToOne
+    @JoinColumn(name="depart_id",referencedColumnName="depart_id", insertable=false, updatable=false)
+    public Depart depart;
 
     @OneToOne
     @JoinColumn(name="location_id",referencedColumnName="location_id", insertable=false, updatable=false)
