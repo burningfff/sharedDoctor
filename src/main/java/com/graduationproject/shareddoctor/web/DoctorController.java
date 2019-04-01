@@ -1,6 +1,8 @@
 package com.graduationproject.shareddoctor.web;
 
 import com.graduationproject.shareddoctor.Entity.Doctor;
+import com.graduationproject.shareddoctor.Entity.Hospital;
+import com.graduationproject.shareddoctor.Entity.Illness;
 import com.graduationproject.shareddoctor.Entity.Qualification;
 import com.graduationproject.shareddoctor.service.DoctorService;
 import com.graduationproject.shareddoctor.utils.Page;
@@ -35,7 +37,22 @@ public class DoctorController {
 
     @PostMapping("/doctor/findAllDoctorByDepartId")
     public ReturnUtil findAllDoctorByDepartId(@RequestBody Doctor doctor){
-        return doctorService.findAllDoctorByDepartId(doctor.departId);
+        return doctorService.findAllDoctorByDepartId(doctor.getDepartId());
+    }
+
+    @PostMapping("/doctor/findAllDoctorByIllness")
+    public ReturnUtil findAllDoctorByIllness(@RequestBody Illness illness){
+        return doctorService.findAllDoctorByIllness(illness.getIllnessName());
+    }
+
+    @PostMapping("/doctor/findAllByDoctorName")
+    public ReturnUtil findAllByDoctorName(@RequestBody Doctor doctor){
+        return doctorService.findAllByDoctorName(doctor.getDoctorName());
+    }
+
+    @PostMapping("/doctor/findAllByHospitalName")
+    public ReturnUtil findAllByHospitalName(@RequestBody Hospital hospital){
+        return doctorService.findAllByHospitalName(hospital.getHospitalName());
     }
 
     @PostMapping("/doctor/deleteDoctor")

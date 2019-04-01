@@ -29,4 +29,9 @@ public class HospitalController {
         return hospitalService.findHospitalByHospitalId(hospital.getHospitalId());
     }
 
+    @PostMapping("/hospital/findAllByHospitalNameContaining")
+    public ReturnUtil findAllByHospitalNameContaining(@RequestBody Hospital hospital){
+        return hospitalService.findAllByHospitalNameContaining(hospital.getHospitalName());
+    }
+
 }

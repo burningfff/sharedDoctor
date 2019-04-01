@@ -35,7 +35,7 @@ public class Qualification {
     public Integer positionId;
 
     @Column(name = "hospital_id")
-    public Integer hospitalId;
+    public String hospitalId;
 
     @Column(name = "is_confirmed")
     public Integer isConfirmed;

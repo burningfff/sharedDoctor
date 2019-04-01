@@ -45,4 +45,10 @@ public interface DoctorService {
 
     ReturnUtil findAllDoctorByDepartId(Integer departId);
 
+    ReturnUtil findAllDoctorByIllness(String IllnessName);
+
+    ReturnUtil findAllByDoctorName(String doctorName);
+
+    ReturnUtil findAllByHospitalName(String hospitalName);
+
 }

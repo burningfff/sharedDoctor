@@ -11,5 +11,9 @@ import com.graduationproject.shareddoctor.utils.ReturnUtil;
 public interface IllnessService {
     //根据id查找Illness
     ReturnUtil findIllnessByIllnessId(Integer illnessId);
+
+    ReturnUtil findAllByIllnessNameContaining(String illnessName);
+
+
 }
 

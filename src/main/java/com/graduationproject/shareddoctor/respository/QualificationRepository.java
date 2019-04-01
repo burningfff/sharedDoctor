@@ -3,6 +3,8 @@ package com.graduationproject.shareddoctor.respository;
 import com.graduationproject.shareddoctor.Entity.Qualification;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 /**
  * @program: sharedDoctor
  * @author: 杨帆
@@ -11,6 +13,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface QualificationRepository extends JpaRepository<Qualification,String> {
 
     Qualification findQualificationByQualificationId(String qualificationId);
+
+    List<Qualification> findAllByHospitalId(String hospitalId);
 
     void deleteQualificationByQualificationId(String qualificationId);
 }

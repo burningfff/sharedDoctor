@@ -24,7 +24,7 @@ import java.util.List;
  * @author: 杨帆
  * @create: 2019/1/10
  **/
-@ComponentScan(basePackages="com.graduationproject.shareddoctor")
+@ComponentScan(basePackages = "com.graduationproject.shareddoctor")
 @Service
 public class DoctorServiceImpl implements DoctorService {
     @Autowired
@@ -37,17 +37,21 @@ public class DoctorServiceImpl implements DoctorService {
     BalanceRepository balanceRepository;
     @Autowired
     QualificationRepository qualificationRepository;
+    @Autowired
+    IllnessRepository illnessRepository;
+    @Autowired
+    HospitalRepository hospitalRepository;
 
     @Override
     public ReturnUtil findDoctorByDoctorId(String doctorId) {
-        Doctor doctor=doctorRepository.findDoctorByDoctorId(doctorId);
+        Doctor doctor = doctorRepository.findDoctorByDoctorId(doctorId);
         return ReturnUtil.ok(doctor);
     }
 
     @Override
-    public ReturnUtil updateDoctorAllData(String doctorName, String gender, Integer age,String identityCard,
-                                          String phone, String email,String introduction, String doctorId){
-        Doctor doctor=doctorRepository.findDoctorByDoctorId(doctorId);
+    public ReturnUtil updateDoctorAllData(String doctorName, String gender, Integer age, String identityCard,
+                                          String phone, String email, String introduction, String doctorId) {
+        Doctor doctor = doctorRepository.findDoctorByDoctorId(doctorId);
         doctor.setDoctorName(doctorName);
         doctor.setGender(gender);
         doctor.setAge(age);
@@ -61,8 +65,8 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public ReturnUtil updateDoctorBasicData(String doctorName, String gender, Integer age
-                                            ,String identityCard, String doctorId){
-        Doctor doctor=doctorRepository.findDoctorByDoctorId(doctorId);
+            , String identityCard, String doctorId) {
+        Doctor doctor = doctorRepository.findDoctorByDoctorId(doctorId);
         doctor.setDoctorName(doctorName);
         doctor.setGender(gender);
         doctor.setAge(age);
@@ -72,8 +76,8 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public ReturnUtil updateDoctorContact( String phone, String email, String locationId, String doctorId){
-        Doctor doctor=doctorRepository.findDoctorByDoctorId(doctorId);
+    public ReturnUtil updateDoctorContact(String phone, String email, String locationId, String doctorId) {
+        Doctor doctor = doctorRepository.findDoctorByDoctorId(doctorId);
         doctor.setPhone(phone);
         doctor.setEmail(email);
         //缺更新地址
@@ -82,33 +86,33 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public ReturnUtil updateDoctorIntroduction(String introduction, String doctorId){
-        Doctor doctor=doctorRepository.findDoctorByDoctorId(doctorId);
+    public ReturnUtil updateDoctorIntroduction(String introduction, String doctorId) {
+        Doctor doctor = doctorRepository.findDoctorByDoctorId(doctorId);
         doctor.setIntroduction(introduction);
         doctorRepository.save(doctor);
         return ReturnUtil.ok();
     }
 
     @Override
-    public ReturnUtil updateDoctorImageUrl(String imageUrl, String doctorId){
-        Doctor doctor=doctorRepository.findDoctorByDoctorId(doctorId);
+    public ReturnUtil updateDoctorImageUrl(String imageUrl, String doctorId) {
+        Doctor doctor = doctorRepository.findDoctorByDoctorId(doctorId);
         doctor.setImageUrl(imageUrl);
         doctorRepository.save(doctor);
         return ReturnUtil.ok();
     }
 
     @Override
-    public ReturnUtil addFromExcel(MultipartFile file){
+    public ReturnUtil addFromExcel(MultipartFile file) {
         List<Doctor> doctors = PoiUtils.importDoctor2List(file);
         for (Doctor doctor : doctors) {
-            if(userRepository.findUserByUserName(doctor.getDoctorName())!=null){
-                return ReturnUtil.err("用户"+doctor.getDoctorName()+"的用户名重复");
+            if (userRepository.findUserByUserName(doctor.getDoctorName()) != null) {
+                return ReturnUtil.err("用户" + doctor.getDoctorName() + "的用户名重复");
             }
         }
         for (Doctor doctor : doctors) {
             User user = new User();
             user.setUserName(doctor.doctorName);
-            String bcryptPassword= BCrypt.hashpw(doctor.doctorName,BCrypt.gensalt());
+            String bcryptPassword = BCrypt.hashpw(doctor.doctorName, BCrypt.gensalt());
             user.setPassword(bcryptPassword);
             user.setIdentity(1);
             user.setCreateDate(new Date());
@@ -134,7 +138,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Transactional
     @Override
-    public ReturnUtil deleteDoctor(String doctorId){
+    public ReturnUtil deleteDoctor(String doctorId) {
         Doctor doctor = doctorRepository.findDoctorByDoctorId(doctorId);
         doctorRepository.deleteById(doctorId);
         userRepository.deleteUserByUserId(doctorId);
@@ -145,16 +149,48 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public ReturnUtil findAllDoctor(Integer pageNum, Integer pageSize){
+    public ReturnUtil findAllDoctor(Integer pageNum, Integer pageSize) {
         Sort sort = new Sort(Sort.Direction.DESC, "doctorId");
         Pageable pageable = new PageRequest(pageNum, pageSize, sort);
         return ReturnUtil.ok(doctorRepository.findAll(pageable));
     }
 
     @Override
-    public ReturnUtil findAllDoctorByDepartId(Integer departId){
+    public ReturnUtil findAllDoctorByDepartId(Integer departId) {
         return ReturnUtil.ok(doctorRepository.findAllByDepartId(departId));
     }
 
+    @Override
+    public ReturnUtil findAllDoctorByIllness(String IllnessName) {
+        List<Illness> illnessList = illnessRepository.findAllByIllnessNameContaining(IllnessName);
+        List<Doctor> doctorList=null;
+        for (Illness illness:illnessList)
+        {
+            List<Doctor> doctors=doctorRepository.findAllByDepartId(illness.departId);
+            doctorList.removeAll(doctors);
+            doctorList.addAll(doctors);
+        }
+        return ReturnUtil.ok(doctorList);
+    }
 
+    @Override
+    public ReturnUtil findAllByDoctorName(String doctorName) {
+        return ReturnUtil.ok(doctorRepository.findAllByDoctorNameContaining(doctorName));
+    }
+
+    @Override
+    public ReturnUtil findAllByHospitalName(String hospitalName) {
+        List<Hospital> hospitals = hospitalRepository.findAllByHospitalNameContaining(hospitalName);
+        List<Qualification> qualificationList = null;
+        for (Hospital hospital : hospitals) {
+            List<Qualification> qualifications = qualificationRepository.findAllByHospitalId(hospital.hospitalId);
+            qualificationList.addAll(qualifications);
+        }
+        List<Doctor> doctorList = null;
+        for (Qualification qualification : qualificationList) {
+            Doctor doctor = doctorRepository.findDoctorByQualificationId(qualification.qualificationId);
+            doctorList.add(doctor);
+        }
+        return ReturnUtil.ok(doctorList);
+    }
 }

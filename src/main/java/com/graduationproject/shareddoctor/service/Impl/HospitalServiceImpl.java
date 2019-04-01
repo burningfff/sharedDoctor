@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @program: sharedDoctor
  * @author: 杨帆
@@ -24,4 +26,12 @@ public class HospitalServiceImpl implements HospitalService {
         Hospital hospital=hospitalRepository.findHospitalByHospitalId(hospitalId);
         return ReturnUtil.ok(hospital);
     }
+
+    @Override
+    public ReturnUtil findAllByHospitalNameContaining(String hospitalName) {
+        List<Hospital> hospitalList=hospitalRepository.findAllByHospitalNameContaining(hospitalName);
+        return ReturnUtil.ok(hospitalList);
+    }
+
+
 }

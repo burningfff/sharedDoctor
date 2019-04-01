@@ -11,5 +11,9 @@ import com.graduationproject.shareddoctor.utils.ReturnUtil;
 public interface HospitalService {
     //根据id查找Hospital
     ReturnUtil findHospitalByHospitalId(String hospitalId);
+
+    ReturnUtil findAllByHospitalNameContaining(String hospitalName);
+
+
 }
 

@@ -29,4 +29,9 @@ public class IllnessController {
         return illnessService.findIllnessByIllnessId(illness.getIllnessId());
     }
 
+    @PostMapping("/illness/findAllByIllnessNameContaining")
+    public ReturnUtil findAllByIllnessNameContaining(@RequestBody Illness illness){
+        return illnessService.findAllByIllnessNameContaining(illness.getIllnessName());
+    }
+
 }

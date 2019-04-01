@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @program: sharedDoctor
  * @author: 杨帆
@@ -23,5 +25,11 @@ public class IllnessServiceImpl implements IllnessService {
     public ReturnUtil findIllnessByIllnessId(Integer illnessId) {
         Illness illness=illnessRepository.findIllnessByIllnessId(illnessId);
         return ReturnUtil.ok(illness);
+    }
+
+    @Override
+    public ReturnUtil findAllByIllnessNameContaining(String illnessName) {
+        List<Illness> illnessList=illnessRepository.findAllByIllnessNameContaining(illnessName);
+        return ReturnUtil.ok(illnessList);
     }
 }

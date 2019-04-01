@@ -26,4 +26,8 @@ public interface DoctorRepository extends JpaRepository<Doctor,String> {
     void deleteDoctorByDoctorId(String doctorId);
 
     List<Doctor> findAllByDepartId(Integer departId);
+
+    List<Doctor> findAllByDoctorNameContaining(String doctorName);
+
+    Doctor findDoctorByQualificationId(String qualificationId);
 }
