@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -163,12 +164,14 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public ReturnUtil findAllDoctorByIllness(String IllnessName) {
         List<Illness> illnessList = illnessRepository.findAllByIllnessNameContaining(IllnessName);
-        List<Doctor> doctorList=null;
+        List<Doctor> doctorList=new ArrayList<>();
         for (Illness illness:illnessList)
         {
             List<Doctor> doctors=doctorRepository.findAllByDepartId(illness.departId);
-            doctorList.removeAll(doctors);
-            doctorList.addAll(doctors);
+            if (doctorList!=doctors){
+                doctorList.removeAll(doctors);
+                doctorList.addAll(doctors);
+            }
         }
         return ReturnUtil.ok(doctorList);
     }
@@ -181,12 +184,12 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public ReturnUtil findAllByHospitalName(String hospitalName) {
         List<Hospital> hospitals = hospitalRepository.findAllByHospitalNameContaining(hospitalName);
-        List<Qualification> qualificationList = null;
-        for (Hospital hospital : hospitals) {
+        List<Qualification> qualificationList = new ArrayList<>();
+        for (Hospital hospital:hospitals) {
             List<Qualification> qualifications = qualificationRepository.findAllByHospitalId(hospital.hospitalId);
             qualificationList.addAll(qualifications);
         }
-        List<Doctor> doctorList = null;
+        List<Doctor> doctorList = new ArrayList<>();
         for (Qualification qualification : qualificationList) {
             Doctor doctor = doctorRepository.findDoctorByQualificationId(qualification.qualificationId);
             doctorList.add(doctor);
