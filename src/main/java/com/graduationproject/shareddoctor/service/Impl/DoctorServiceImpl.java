@@ -42,6 +42,8 @@ public class DoctorServiceImpl implements DoctorService {
     IllnessRepository illnessRepository;
     @Autowired
     HospitalRepository hospitalRepository;
+    @Autowired
+    DepartRepository departRepository;
 
     @Override
     public ReturnUtil findDoctorByDoctorId(String doctorId) {
@@ -159,6 +161,19 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public ReturnUtil findAllDoctorByDepartId(Integer departId) {
         return ReturnUtil.ok(doctorRepository.findAllByDepartId(departId));
+    }
+
+    @Override
+    public ReturnUtil findAllDoctorByDepartName(String departName) {
+        List<Depart> departs=departRepository.findAllByDepartNameContaining(departName);
+        List<Doctor> doctorList=new ArrayList<>();
+        for(Depart depart:departs){
+            System.out.println(depart.departId);
+            List<Doctor> doctors=doctorRepository.findAllByDepartId(depart.departId);
+            doctorList.removeAll(doctors);
+            doctorList.addAll(doctors);
+        }
+        return ReturnUtil.ok(doctorList);
     }
 
     @Override

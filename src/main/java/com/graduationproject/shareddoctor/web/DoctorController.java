@@ -1,9 +1,6 @@
 package com.graduationproject.shareddoctor.web;
 
-import com.graduationproject.shareddoctor.Entity.Doctor;
-import com.graduationproject.shareddoctor.Entity.Hospital;
-import com.graduationproject.shareddoctor.Entity.Illness;
-import com.graduationproject.shareddoctor.Entity.Qualification;
+import com.graduationproject.shareddoctor.Entity.*;
 import com.graduationproject.shareddoctor.service.DoctorService;
 import com.graduationproject.shareddoctor.utils.Page;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
@@ -48,6 +45,11 @@ public class DoctorController {
     @PostMapping("/doctor/findAllByDoctorName")
     public ReturnUtil findAllByDoctorName(@RequestBody Doctor doctor){
         return doctorService.findAllByDoctorName(doctor.getDoctorName());
+    }
+
+    @PostMapping("/doctor/findAllDoctorByDepartName")
+    public ReturnUtil findAllDoctorByDepartName(@RequestBody Depart depart){
+        return doctorService.findAllDoctorByDepartName(depart.getDepartName());
     }
 
     @PostMapping("/doctor/findAllByHospitalName")

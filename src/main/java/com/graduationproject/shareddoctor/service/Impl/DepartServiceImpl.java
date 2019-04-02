@@ -67,4 +67,9 @@ public class DepartServiceImpl implements DepartService {
     public ReturnUtil findDepartIdByDepartName(String departName){
         return ReturnUtil.ok(departRepository.findDepartByDepartName(departName).departId);
     }
+
+    @Override
+    public ReturnUtil findAllByDepartNameContaining(String departName){
+        return ReturnUtil.ok(departRepository.findAllByDepartNameContaining(departName));
+    }
 }

@@ -25,5 +25,8 @@ public interface DepartService {
 
     ReturnUtil findDepartIdByDepartName(String departName);
 
+    ReturnUtil findAllByDepartNameContaining(String departName);
+
+
 }
 
