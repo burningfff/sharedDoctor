@@ -109,12 +109,13 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public ReturnUtil updatePatientBasicData(String patientName, String gender, Integer age ,String identityCard, String patientId){
+    public ReturnUtil updatePatientBasicData(String patientName, String gender, Integer age, Integer weight, String illness, String patientId){
         Patient patient=patientRepository.findPatientByPatientId(patientId);
         patient.setPatientName(patientName);
         patient.setGender(gender);
         patient.setAge(age);
-        patient.setIdentityCard(identityCard);
+        patient.setWeight(weight);
+        patient.setIllness(illness);
         patientRepository.save(patient);
         return ReturnUtil.ok();
     }

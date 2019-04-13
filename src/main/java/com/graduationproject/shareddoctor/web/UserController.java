@@ -24,22 +24,22 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/user/signIn")
-    public ReturnUtil signIn(@RequestBody User user){
-        return userService.signIn(user.userName,user.password);
+    public ReturnUtil signIn(@RequestBody User user) {
+        return userService.signIn(user.userName, user.password);
     }
 
     @PostMapping("/user/signUp")
-    public ReturnUtil signUp(@RequestBody User user){
-        return userService.signUp(user.userName,user.password,user.identity);
+    public ReturnUtil signUp(@RequestBody User user) {
+        return userService.signUp(user.userName, user.password, user.identity);
     }
 
     @PostMapping("/user/changePassword")
-    public ReturnUtil changePassword(@RequestBody User user){
-        return userService.changePassword(user.getPassword(),user.getUserId());
+    public ReturnUtil changePassword(@RequestBody User user) {
+        return userService.changePassword(user.getPassword(), user.getUserId());
     }
 
     @PostMapping("/user/findUserByUserId")
-    public ReturnUtil findUserByUserId(@RequestBody User user){
+    public ReturnUtil findUserByUserId(@RequestBody User user) {
         return userService.findUserByUserId(user.getUserId());
     }
 

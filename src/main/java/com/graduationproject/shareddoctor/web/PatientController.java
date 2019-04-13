@@ -53,7 +53,7 @@ public class PatientController {
     @PostMapping("/patient/updatePatientBasicData")
     public ReturnUtil updatePatientBasicData(@RequestBody Patient patient){
         return patientService.updatePatientBasicData(patient.getPatientName(),patient.getGender(),patient.getAge(),
-                patient.getIdentityCard(),patient.getPatientId());
+                patient.getWeight(),patient.getIllness(),patient.getPatientId());
     }
 
     @PostMapping("/patient/updatePatientContact")

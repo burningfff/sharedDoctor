@@ -32,6 +32,9 @@ public class Patient {
     @Column(name = "age")
     public Integer age;
 
+    @Column(name= "weight")
+    public Integer weight;
+
     @Column(name = "image_url")
     public String imageUrl;
 
@@ -47,8 +50,8 @@ public class Patient {
     @Column(name = "balance_id")
     public String balanceId;
 
-    @Column(name = "illness_id")
-    public String illnessId;
+    @Column(name = "illness")
+    public String illness;
 
     @OneToOne
     @JoinColumn(name="patient_id",referencedColumnName="user_id")

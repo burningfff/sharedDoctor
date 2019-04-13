@@ -24,15 +24,15 @@ public interface PatientService {
     //根据Id删除患者
     ReturnUtil deletePatient(String patientId);
 
-    //更新医生所有资料
+    //更新患者所有资料
     ReturnUtil updatePatientAllData(String patientName, String gender, Integer age, String identityCard, String phone, String email, String patientId);
 
-    //更新医生基础资料
-    ReturnUtil updatePatientBasicData(String patientName, String gender, Integer age, String identityCard, String patientId);
+    //更新患者基础资料
+    ReturnUtil updatePatientBasicData(String patientName, String gender, Integer age, Integer weight, String illness, String patientId);
 
-    //更新医生联系方式
+    //更新患者联系方式
     ReturnUtil updatePatientContact(String phone, String email, String locationId, String patientId);
 
-    //更新医生头像照片
+    //更新患者头像照片
     ReturnUtil updatePatientImageUrl(String imageUrl, String patientId);
 }
