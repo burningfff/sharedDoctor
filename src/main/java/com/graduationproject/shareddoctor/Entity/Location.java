@@ -39,6 +39,9 @@ public class Location {
     @Column(name = "area")
     public String area;
 
+    @Column(name = "area_code")
+    public String areaCode;
+
     @Column(name = "location_detail")
     public String locationDetail;
 

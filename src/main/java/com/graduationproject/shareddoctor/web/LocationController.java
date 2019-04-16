@@ -31,12 +31,12 @@ public class LocationController {
 
     @PostMapping("/location/updateLocationByLocationId")
     public ReturnUtil updateLocationByLocationId(@RequestBody Location location){
-        return locationService.updateLocationByLocationId(location.getProvince(),location.getCity(),location.getArea(),location.getLocationDetail(),location.getLocationId());
+        return locationService.updateLocationByLocationId(location.getProvince(),location.getCity(),location.getArea(),location.getLocationDetail(),location.getAreaCode(),location.getLocationId());
     }
 
     @PostMapping("/location/addLocation")
     public ReturnUtil addLocation(@RequestBody Location location){
-        return locationService.addLocation(location.getProvince(),location.getCity(),location.getArea(),location.getLocationDetail());
+        return locationService.addLocation(location.getProvince(),location.getCity(),location.getArea(),location.getAreaCode(),location.getLocationDetail());
     }
 
 }
