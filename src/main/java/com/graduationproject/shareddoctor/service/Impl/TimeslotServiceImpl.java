@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * @program: sharedDoctor
  * @author: 杨帆
@@ -24,4 +27,40 @@ public class TimeslotServiceImpl implements TimeslotService {
         Timeslot timeslot=timeslotRepository.findTimeslotByTimeId(timeId);
         return ReturnUtil.ok(timeslot);
     }
+
+    @Override
+    public ReturnUtil addTimeslot(String doctorId, Date startTime, Date endTime, String serviceId,Integer serviceType) {
+
+        Timeslot timeslot=new Timeslot();
+        timeslot.setDoctorId(doctorId);
+        timeslot.setStartTime(startTime);
+        timeslot.setEndTime(endTime);
+        timeslot.setServiceId(serviceId);
+        timeslot.setServiceType(serviceType);
+        timeslot.setIsOrdered(0);
+        timeslotRepository.save(timeslot);
+        return ReturnUtil.ok("添加成功");
+    }
+
+    @Override
+    public ReturnUtil deleteTimeslotByTimeId(String timeId) {
+        timeslotRepository.deleteById(timeId);
+        return ReturnUtil.ok("删除成功");
+    }
+
+    @Override
+    public ReturnUtil deleteTimeslotByServiceId(String serviceId) {
+        List<Timeslot> timeslots=timeslotRepository.findAllByServiceId(serviceId);
+        for(Timeslot timeslot:timeslots){
+            timeslotRepository.deleteById(timeslot.timeId);
+        }
+        return ReturnUtil.ok("删除成功");
+    }
+
+    @Override
+    public ReturnUtil findAllByDoctorIdAndServiceType(String doctorId,Integer serviceType) {
+        return ReturnUtil.ok(timeslotRepository.findAllByDoctorIdAndServiceTypeOrderByStartTimeAsc(doctorId,serviceType));
+    }
+
+
 }

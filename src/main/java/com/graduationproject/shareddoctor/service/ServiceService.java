@@ -13,5 +13,10 @@ import com.graduationproject.shareddoctor.utils.ReturnUtil;
 public interface ServiceService {
 
     //根据id查找Service
-    ReturnUtil findServiceByServiceId(String ServiceId);
+    ReturnUtil findServiceByServiceId(String serviceId);
+
+    ReturnUtil addService(String serviceName, Double price);
+
+    ReturnUtil deleteServiceByServiceId(String serviceId);
+
 }

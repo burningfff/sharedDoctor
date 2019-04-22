@@ -5,10 +5,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 /**
@@ -23,17 +20,21 @@ import javax.persistence.Id;
 @Entity
 @Component
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
-public class Order {
+public class OrderForm {
 
     @Id
     @GeneratedValue(generator = "jpa-uuid")
     @Column(name = "order_id",length = 32)
     public String orderId;
 
-    @Column(name = "time_id")
+    @Column(name = "time_id",length = 32)
     public String timeId;
 
-    @Column(name = "patient_id")
+    @Column(name = "patient_id",length = 32)
     public String patientId;
+
+    @OneToOne
+    @JoinColumn(name="time_id",referencedColumnName="time_id", insertable=false, updatable=false)
+    public Timeslot timeslot;
 
 }

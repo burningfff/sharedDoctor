@@ -82,6 +82,12 @@ public class DoctorController {
         return doctorService.updateDoctorIntroduction(doctor.getIntroduction(),doctor.getDoctorId());
     }
 
+    @PostMapping("/doctor/updateDoctorDepart")
+    public ReturnUtil updateDoctorDepart(@RequestBody Doctor doctor){
+        return doctorService.updateDoctorDepart(doctor.getDepartId(),doctor.getDoctorId());
+    }
+
+
     @PostMapping("/doctor/updateDoctorImageUrl")
     public ReturnUtil updateDoctorImageUrl(@RequestBody Doctor doctor){
         return doctorService.updateDoctorImageUrl(doctor.getImageUrl(),doctor.getDoctorId());

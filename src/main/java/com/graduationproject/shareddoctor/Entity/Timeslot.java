@@ -5,10 +5,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 
@@ -44,4 +41,11 @@ public class Timeslot {
 
     @Column(name = "service_id")
     public String serviceId;
+
+    @Column(name = "service_type")
+    public Integer serviceType;
+
+    @ManyToOne
+    @JoinColumn(name="service_id",referencedColumnName="service_id", insertable=false, updatable=false)
+    public Service service;
 }

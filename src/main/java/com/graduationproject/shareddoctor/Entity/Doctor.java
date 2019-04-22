@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 
 import javax.persistence.*;
+import java.text.DecimalFormat;
 
 /**
  * @program: sharedDoctor
@@ -50,7 +51,7 @@ public class Doctor {
     public String balanceId;
 
     @Column(name = "evaluation")
-    public Integer evaluation;
+    public Double evaluation;
 
     @Column(name = "qualification_id")
     public String qualificationId;
@@ -60,6 +61,9 @@ public class Doctor {
 
     @Column(name = "depart_id")
     public Integer departId;
+
+    @Column(name = "reply_times")
+    public Integer replyTimes;
 
     @OneToOne
     @JoinColumn(name="doctor_id",referencedColumnName="user_id")

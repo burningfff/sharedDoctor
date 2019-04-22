@@ -52,7 +52,6 @@ public class PatientServiceImpl implements PatientService {
         Patient patient= patientRepository.findPatientByPatientId(patientId);
         patientRepository.deletePatientByPatientId(patientId);
         userRepository.deleteUserByUserId(patientId);
-        balanceRepository.deleteBalanceByBalanceId(patient.balanceId);
         locationRepository.deleteLocationByLocationId(patient.locationId);
         return ReturnUtil.ok("删除成功");
     }
@@ -83,12 +82,9 @@ public class PatientServiceImpl implements PatientService {
 
             Location location = new Location();
             locationRepository.save(location);
-            Balance balance = new Balance();
-            balanceRepository.save(balance);
 
             patient.setPatientId(user.userId);
             patient.setLocationId(location.locationId);
-            patient.setBalanceId(balance.balanceId);
             patientRepository.save(patient);
         }
         return ReturnUtil.ok();

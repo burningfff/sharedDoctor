@@ -31,6 +31,9 @@ public interface DoctorService {
     //更新医生个人介绍
     ReturnUtil updateDoctorIntroduction(String introduction, String doctorId);
 
+    //更新医生所属科室
+    ReturnUtil updateDoctorDepart(Integer departId, String doctorId);
+
     //更新医生头像照片
     ReturnUtil updateDoctorImageUrl(String imageUrl, String doctorId);
 

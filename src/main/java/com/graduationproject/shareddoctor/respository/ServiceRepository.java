@@ -11,5 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ServiceRepository extends JpaRepository<Service,String> {
 
     Service findServiceByServiceId(String serviceId);
+
+    void deleteServiceByServiceId(String serviceId);
     
 }

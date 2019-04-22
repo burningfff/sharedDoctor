@@ -29,4 +29,26 @@ public class TimeslotController {
         return timeslotService.findTimeslotByTimeId(timeslot.getTimeId());
     }
 
+    @PostMapping("/timeslot/findAllByDoctorIdAndServiceType")
+    public ReturnUtil findAllByDoctorIdAndServiceType(@RequestBody Timeslot timeslot){
+        return timeslotService.findAllByDoctorIdAndServiceType(timeslot.getDoctorId(),timeslot.getServiceType());
+    }
+
+    @PostMapping("/timeslot/addTimeslot")
+    public ReturnUtil addTimeslot(@RequestBody Timeslot timeslot){
+        return timeslotService.addTimeslot(timeslot.getDoctorId(),timeslot.getStartTime(),timeslot.getEndTime(),timeslot.getServiceId(),timeslot.getServiceType());
+    }
+
+    @PostMapping("/timeslot/deleteTimeslotByTimeId")
+    public ReturnUtil deleteTimeslotByTimeId(@RequestBody Timeslot timeslot){
+        return timeslotService.deleteTimeslotByTimeId(timeslot.getTimeId());
+    }
+
+    @PostMapping("/timeslot/deleteTimeslotByServiceId")
+    public ReturnUtil deleteTimeslotByServiceId(@RequestBody Timeslot timeslot){
+        return timeslotService.deleteTimeslotByServiceId(timeslot.getServiceId());
+    }
+
+
+
 }

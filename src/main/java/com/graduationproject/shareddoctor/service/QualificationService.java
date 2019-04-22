@@ -16,4 +16,8 @@ public interface QualificationService {
 
     //更新认证状态
     ReturnUtil updateQualificationByQualificationId(String qualificationId, Integer isConfirmed);
+
+    //更新认证信息
+    ReturnUtil updateQualificationInfoByQualificationId(String qualificationId, Integer positionId, String hospitalId ,String imageUrl);
+
 }

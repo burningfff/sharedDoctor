@@ -34,6 +34,10 @@ public class QualificationController {
         return qualificationService.updateQualificationByQualificationId(qualification.getQualificationId(),qualification.getIsConfirmed());
     }
 
+    @PostMapping("/qualification/updateQualificationInfoByQualificationId")
+    public ReturnUtil updateQualificationInfoByQualificationId(@RequestBody Qualification qualification){
+        return qualificationService.updateQualificationInfoByQualificationId(qualification.getQualificationId(),qualification.getPositionId(),qualification.getHospitalId(),qualification.getImageUrl());
+    }
 
 
 }

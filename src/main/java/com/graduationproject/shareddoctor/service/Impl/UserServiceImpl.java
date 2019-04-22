@@ -81,14 +81,10 @@ public class UserServiceImpl implements UserService {
         if (identity == 0) {
             Location location = new Location();
             locationRepository.save(location);
-            Balance balance = new Balance();
-            balanceRepository.save(balance);
-
 
             Patient patient = new Patient();
             patient.setPatientId(userId);
             patient.setLocationId(location.locationId);
-            patient.setBalanceId(balance.balanceId);
             patientRepository.save(patient);
         }
         //医生

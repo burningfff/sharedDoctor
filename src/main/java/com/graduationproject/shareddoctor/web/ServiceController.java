@@ -29,4 +29,14 @@ public class ServiceController {
         return serviceService.findServiceByServiceId(service.getServiceId());
     }
 
+    @PostMapping("/service/addService")
+    public ReturnUtil addService(@RequestBody Service service){
+        return serviceService.addService(service.getServiceName(),service.getPrice());
+    }
+
+    @PostMapping("/service/deleteServiceByServiceId")
+    public ReturnUtil deleteServiceByServiceId(@RequestBody Service service){
+        return serviceService.deleteServiceByServiceId(service.getServiceId());
+    }
+
 }

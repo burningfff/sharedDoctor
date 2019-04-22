@@ -5,17 +5,12 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.util.Date;
-
+import javax.persistence.*;
 
 /**
  * @program: sharedDoctor
  * @author: 杨帆
- * @create: 2019/1/10
+ * @create: 2019/4/17
  **/
 
 
@@ -24,17 +19,16 @@ import java.util.Date;
 @Entity
 @Component
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
-public class Service {
-
+public class Chat {
     @Id
     @GeneratedValue(generator = "jpa-uuid")
-    @Column(name = "service_id",length = 32)
-    public String serviceId;
+    @Column(name = "chat_id",length = 32)
+    public String chatId;
 
-    @Column(name = "service_name")
-    public String serviceName;
+    @Column(name = "doctor_id")
+    public String doctorId;
 
-    @Column(name = "price")
-    public Double price;
+    @Column(name = "patient_id")
+    public String patientId;
 
 }

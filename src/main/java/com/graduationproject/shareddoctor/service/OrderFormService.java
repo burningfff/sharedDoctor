@@ -8,8 +8,14 @@ import com.graduationproject.shareddoctor.utils.ReturnUtil;
  * @create: 2019/1/10
  **/
 
-public interface OrderService {
+public interface OrderFormService {
     //根据id查找Order
     ReturnUtil findOrderByOrderId(String orderId);
+
+    ReturnUtil findAllByPatientId(String patientId);
+
+    ReturnUtil deleteOrderByOrderId(String orderId);
+
+    ReturnUtil addOrder(String timeId,String patientId);
 }
 

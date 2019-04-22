@@ -33,5 +33,15 @@ public class QualificationServiceImpl implements QualificationService {
         return ReturnUtil.ok();
     }
 
+    @Override
+    public ReturnUtil updateQualificationInfoByQualificationId(String qualificationId, Integer positionId, String hospitalId ,String imageUrl) {
+        Qualification qualification=qualificationRepository.findQualificationByQualificationId(qualificationId);
+        qualification.setPositionId(positionId);
+        qualification.setHospitalId(hospitalId);
+        qualification.setImageUrl(imageUrl);
+        qualificationRepository.save(qualification);
+        return ReturnUtil.ok();
+    }
+
 
 }

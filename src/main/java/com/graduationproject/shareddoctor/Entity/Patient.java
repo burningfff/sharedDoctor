@@ -47,9 +47,6 @@ public class Patient {
     @Column(name = "location_id")
     public String locationId;
 
-    @Column(name = "balance_id")
-    public String balanceId;
-
     @Column(name = "illness")
     public String illness;
 
@@ -60,9 +57,5 @@ public class Patient {
     @OneToOne
     @JoinColumn(name="location_id",referencedColumnName="location_id", insertable=false, updatable=false)
     public Location location;
-
-    @OneToOne
-    @JoinColumn(name="balance_id",referencedColumnName="balance_id", insertable=false, updatable=false)
-    public Balance balance;
 
 }

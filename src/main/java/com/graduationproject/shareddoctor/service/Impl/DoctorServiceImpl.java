@@ -97,6 +97,14 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
+    public ReturnUtil updateDoctorDepart(Integer departId, String doctorId) {
+        Doctor doctor = doctorRepository.findDoctorByDoctorId(doctorId);
+        doctor.setDepartId(departId);
+        doctorRepository.save(doctor);
+        return ReturnUtil.ok();
+    }
+
+    @Override
     public ReturnUtil updateDoctorImageUrl(String imageUrl, String doctorId) {
         Doctor doctor = doctorRepository.findDoctorByDoctorId(doctorId);
         doctor.setImageUrl(imageUrl);
