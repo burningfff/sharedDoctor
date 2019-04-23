@@ -36,5 +36,4 @@ public class ChatDetailController {
         return chatDetailService.addChatDetail(chatDetail.getChatId(),chatDetail.getChatDetail());
     }
 
-
 }

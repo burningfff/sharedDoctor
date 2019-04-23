@@ -46,7 +46,7 @@ public class OrderFormController {
 
     @PostMapping("/order/addOrder")
     public ReturnUtil addOrder(@RequestBody OrderForm orderForm){
-        return orderFormService.addOrder(orderForm.getTimeId(), orderForm.getPatientId());
+        return orderFormService.addOrder(orderForm.getTimeId(), orderForm.getPatientId(),orderForm.getChatId());
     }
 
 }

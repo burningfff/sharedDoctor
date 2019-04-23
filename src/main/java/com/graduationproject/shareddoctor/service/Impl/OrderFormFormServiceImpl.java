@@ -51,10 +51,11 @@ public class OrderFormFormServiceImpl implements OrderFormService {
     }
 
     @Override
-    public ReturnUtil addOrder(String timeId,String patientId){
+    public ReturnUtil addOrder(String timeId,String patientId,String chatId){
         OrderForm orderForm =new OrderForm();
         orderForm.setPatientId(patientId);
         orderForm.setTimeId(timeId);
+        orderForm.setChatId(chatId);
         orderFormFormRepository.save(orderForm);
         Timeslot timeslot=timeslotRepository.findTimeslotByTimeId(timeId);
         timeslot.setIsOrdered(1);

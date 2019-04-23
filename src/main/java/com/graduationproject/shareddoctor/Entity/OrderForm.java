@@ -33,6 +33,13 @@ public class OrderForm {
     @Column(name = "patient_id",length = 32)
     public String patientId;
 
+    @Column(name = "chat_id",length = 32)
+    public String chatId;
+
+    @OneToOne
+    @JoinColumn(name="chat_id",referencedColumnName="chat_id", insertable=false, updatable=false)
+    public Chat chat;
+
     @OneToOne
     @JoinColumn(name="time_id",referencedColumnName="time_id", insertable=false, updatable=false)
     public Timeslot timeslot;
