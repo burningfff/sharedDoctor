@@ -2,6 +2,7 @@ package com.graduationproject.shareddoctor.Entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
@@ -19,9 +20,14 @@ import java.util.Date;
 @Setter
 @Entity
 @Component
+@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class ChatDetail {
     @Id
-    @Column(name = "chat_id")
+    @GeneratedValue(generator = "jpa-uuid")
+    @Column(name = "chat_detail_id",length = 32)
+    public String chatDetailId;
+
+    @Column(name = "chat_id",length = 32)
     public String chatId;
 
     @Column(name = "chat_detail")

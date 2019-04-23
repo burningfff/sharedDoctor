@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @program: sharedDoctor
@@ -31,4 +32,8 @@ public class Chat {
     @Column(name = "patient_id")
     public String patientId;
 
+    @OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name="chat_id")
+    @OrderBy(value = "chat_date ASC")
+    public List<ChatDetail> chatDetails;
 }

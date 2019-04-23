@@ -14,6 +14,8 @@ public interface OrderFormService {
 
     ReturnUtil findAllByPatientId(String patientId);
 
+    ReturnUtil findOrderFormByTimeId(String timeId);
+
     ReturnUtil deleteOrderByOrderId(String orderId);
 
     ReturnUtil addOrder(String timeId,String patientId);

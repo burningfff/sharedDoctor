@@ -41,6 +41,11 @@ public class OrderFormFormServiceImpl implements OrderFormService {
     }
 
     @Override
+    public ReturnUtil findOrderFormByTimeId(String timeId){
+        return ReturnUtil.ok(orderFormFormRepository.findOrderFormByTimeId(timeId));
+    }
+
+    @Override
     public ReturnUtil deleteOrderByOrderId(String orderFormId){
         return ReturnUtil.ok(orderFormFormRepository.deleteOrderByOrderId(orderFormId));
     }

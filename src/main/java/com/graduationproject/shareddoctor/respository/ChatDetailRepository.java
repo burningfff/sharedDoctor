@@ -12,6 +12,7 @@ import java.util.List;
  **/
 public interface ChatDetailRepository extends JpaRepository<ChatDetail,String> {
 
-    List<ChatDetail> findAllByChatId (String ChatId);
+    List<ChatDetail> findAllByChatId(String ChatId);
 
+    void deleteChatDetailByChatId(String ChatId);
 }

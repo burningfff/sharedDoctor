@@ -29,6 +29,11 @@ public class OrderFormController {
         return orderFormService.findOrderByOrderId(orderForm.getOrderId());
     }
 
+    @PostMapping("/order/findOrderFormByTimeId")
+    public ReturnUtil findOrderFormByTimeId(@RequestBody OrderForm orderForm){
+        return orderFormService.findOrderFormByTimeId(orderForm.getTimeId());
+    }
+
     @PostMapping("/order/findAllByPatientId")
     public ReturnUtil findAllByPatientId(@RequestBody OrderForm orderForm){
         return orderFormService.findAllByPatientId(orderForm.getPatientId());

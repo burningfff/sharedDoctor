@@ -37,4 +37,10 @@ public class OrderForm {
     @JoinColumn(name="time_id",referencedColumnName="time_id", insertable=false, updatable=false)
     public Timeslot timeslot;
 
+    @ManyToOne
+    @JoinColumn(name="patient_id",referencedColumnName="patient_id", insertable=false, updatable=false)
+    public Patient patient;
+
+
+
 }

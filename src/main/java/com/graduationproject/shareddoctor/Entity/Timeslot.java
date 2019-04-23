@@ -48,4 +48,8 @@ public class Timeslot {
     @ManyToOne
     @JoinColumn(name="service_id",referencedColumnName="service_id", insertable=false, updatable=false)
     public Service service;
+
+    @ManyToOne
+    @JoinColumn(name="doctor_id",referencedColumnName="doctor_id", insertable=false, updatable=false)
+    public Doctor doctor;
 }
