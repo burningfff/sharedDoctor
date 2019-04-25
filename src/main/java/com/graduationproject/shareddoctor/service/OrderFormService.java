@@ -16,8 +16,12 @@ public interface OrderFormService {
 
     ReturnUtil findOrderFormByTimeId(String timeId);
 
+    ReturnUtil findOrderFormByChatId(String chatId);
+
     ReturnUtil deleteOrderByOrderId(String orderId);
 
     ReturnUtil addOrder(String timeId,String patientId,String chatId);
+
+
 }
 

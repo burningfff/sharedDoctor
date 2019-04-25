@@ -34,6 +34,10 @@ public class Chat {
 
     @OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn(name="chat_id")
-    @OrderBy(value = "chat_date ASC")
+    @OrderBy(value = "chat_date ASC,chat_detail_id ASC")
     public List<ChatDetail> chatDetails;
+
+    @ManyToOne
+    @JoinColumn(name="doctor_id",referencedColumnName="doctor_id", insertable=false, updatable=false)
+    public Doctor doctor;
 }

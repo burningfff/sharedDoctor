@@ -39,6 +39,11 @@ public class OrderFormController {
         return orderFormService.findAllByPatientId(orderForm.getPatientId());
     }
 
+    @PostMapping("/order/findOrderFormByChatId")
+    public ReturnUtil findOrderFormByChatId(@RequestBody OrderForm orderForm){
+        return orderFormService.findOrderFormByChatId(orderForm.getChatId());
+    }
+
     @PostMapping("/order/deleteOrderByOrderId")
     public ReturnUtil deleteOrderByOrderId(@RequestBody OrderForm orderForm){
         return orderFormService.deleteOrderByOrderId(orderForm.getOrderId());

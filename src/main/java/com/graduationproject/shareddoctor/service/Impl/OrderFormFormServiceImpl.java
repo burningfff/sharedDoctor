@@ -46,6 +46,11 @@ public class OrderFormFormServiceImpl implements OrderFormService {
     }
 
     @Override
+    public ReturnUtil findOrderFormByChatId(String chatId){
+        return ReturnUtil.ok(orderFormFormRepository.findOrderFormByChatId(chatId));
+    }
+
+    @Override
     public ReturnUtil deleteOrderByOrderId(String orderFormId){
         return ReturnUtil.ok(orderFormFormRepository.deleteOrderByOrderId(orderFormId));
     }
@@ -57,9 +62,12 @@ public class OrderFormFormServiceImpl implements OrderFormService {
         orderForm.setTimeId(timeId);
         orderForm.setChatId(chatId);
         orderFormFormRepository.save(orderForm);
-        Timeslot timeslot=timeslotRepository.findTimeslotByTimeId(timeId);
-        timeslot.setIsOrdered(1);
-        timeslotRepository.save(timeslot);
+        if(timeId!=null)
+        {
+            Timeslot timeslot=timeslotRepository.findTimeslotByTimeId(timeId);
+            timeslot.setIsOrdered(1);
+            timeslotRepository.save(timeslot);
+        }
         Thirdparty thirdparty=new Thirdparty();
         thirdparty.setOrderId(orderForm.orderId);
         thirdparty.setCreateDate(new Date());

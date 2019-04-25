@@ -19,4 +19,6 @@ public interface OrderFormRepository extends JpaRepository<OrderForm,String> {
     OrderForm findOrderFormByTimeId(String timeId);
 
     OrderForm deleteOrderByOrderId(String orderId);
+
+    OrderForm findOrderFormByChatId(String chatId);
 }
