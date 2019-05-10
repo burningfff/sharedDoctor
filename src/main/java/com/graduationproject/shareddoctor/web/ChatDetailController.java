@@ -26,9 +26,9 @@ public class ChatDetailController {
         return chatDetailService.findAllByChatId(chatDetail.getChatId());
     }
 
-    @PostMapping("/chatDetail/deleteChatDetailByChatId")
-    public ReturnUtil deleteChatDetailByChatId(@RequestBody ChatDetail chatDetail){
-        return chatDetailService.deleteChatDetailByChatId(chatDetail.getChatId());
+    @PostMapping("/chatDetail/deleteAllChatDetailByChatId")
+    public ReturnUtil deleteAllChatDetailByChatId(@RequestBody ChatDetail chatDetail){
+        return chatDetailService.deleteAllChatDetailByChatId(chatDetail.getChatId());
     }
 
     @PostMapping("/chatDetail/addChatDetail")

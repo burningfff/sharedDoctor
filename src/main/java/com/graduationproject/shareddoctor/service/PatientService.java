@@ -21,6 +21,9 @@ public interface PatientService {
     //根据页码和页面大小返回当前页所有患者信息
     ReturnUtil findAllPatient(Integer pageNum, Integer pageSize);
 
+    //根据患者姓名页码和页面大小返回当前页所有患者信息
+    ReturnUtil findAllPatientByPatientName(Integer pageNum, Integer pageSize,String patientName);
+
     //根据Id删除患者
     ReturnUtil deletePatient(String patientId);
 

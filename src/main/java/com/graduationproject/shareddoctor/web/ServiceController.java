@@ -29,9 +29,14 @@ public class ServiceController {
         return serviceService.findServiceByServiceId(service.getServiceId());
     }
 
+    @PostMapping("/service/findAllByDoctorId")
+    public ReturnUtil findAllByDoctorId(@RequestBody Service service){
+        return serviceService.findAllByDoctorId(service.getDoctorId());
+    }
+
     @PostMapping("/service/addService")
     public ReturnUtil addService(@RequestBody Service service){
-        return serviceService.addService(service.getServiceName(),service.getPrice());
+        return serviceService.addService(service.getDoctorId(),service.getServiceName(),service.getPrice());
     }
 
     @PostMapping("/service/deleteServiceByServiceId")

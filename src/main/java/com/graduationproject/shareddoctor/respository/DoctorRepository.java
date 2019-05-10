@@ -29,5 +29,7 @@ public interface DoctorRepository extends JpaRepository<Doctor,String> {
 
     List<Doctor> findAllByDoctorNameContaining(String doctorName);
 
+    Page<Doctor> findAllByDoctorNameContainingOrderByDoctorId(String doctorName,Pageable pageable);
+
     Doctor findDoctorByQualificationId(String qualificationId);
 }

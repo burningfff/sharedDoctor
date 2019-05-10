@@ -1,6 +1,8 @@
 package com.graduationproject.shareddoctor.service.Impl;
 
 import com.graduationproject.shareddoctor.Entity.Chat;
+import com.graduationproject.shareddoctor.Entity.ChatDetail;
+import com.graduationproject.shareddoctor.respository.ChatDetailRepository;
 import com.graduationproject.shareddoctor.respository.ChatRepository;
 import com.graduationproject.shareddoctor.service.ChatService;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
@@ -8,6 +10,8 @@ import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @program: sharedDoctor
@@ -20,6 +24,8 @@ import org.springframework.stereotype.Service;
 public class ChatServiceImpl implements ChatService {
     @Autowired
     ChatRepository chatRepository;
+    @Autowired
+    ChatDetailRepository chatDetailRepository;
 
     @Override
     public com.graduationproject.shareddoctor.utils.ReturnUtil findAllByPatientId(String patientId){
@@ -43,7 +49,11 @@ public class ChatServiceImpl implements ChatService {
 
     @Override
     public ReturnUtil deleteChatByChatId(String chatId){
-        chatRepository.deleteChatByChatId(chatId);
-        return ReturnUtil.ok("删除成功！");
+        List<ChatDetail> chatDetails=chatDetailRepository.findAllByChatId(chatId);
+        for (ChatDetail chatDetail:chatDetails){
+            chatDetailRepository.deleteById(chatDetail.chatDetailId);
+        }
+        chatRepository.deleteById(chatId);
+        return ReturnUtil.ok();
     }
 }

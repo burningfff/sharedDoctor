@@ -1,18 +1,16 @@
 package com.graduationproject.shareddoctor.service.Impl;
 
-import com.graduationproject.shareddoctor.Entity.OrderForm;
-import com.graduationproject.shareddoctor.Entity.Thirdparty;
-import com.graduationproject.shareddoctor.Entity.Timeslot;
-import com.graduationproject.shareddoctor.respository.OrderFormRepository;
-import com.graduationproject.shareddoctor.respository.ThirdpartyRepository;
-import com.graduationproject.shareddoctor.respository.TimeslotRepository;
+import com.graduationproject.shareddoctor.Entity.*;
+import com.graduationproject.shareddoctor.respository.*;
 import com.graduationproject.shareddoctor.service.OrderFormService;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @program: sharedDoctor
@@ -28,11 +26,21 @@ public class OrderFormFormServiceImpl implements OrderFormService {
     TimeslotRepository timeslotRepository;
     @Autowired
     ThirdpartyRepository thirdpartyRepository;
+    @Autowired
+    ChatDetailRepository chatDetailRepository;
+    @Autowired
+    ChatRepository chatRepository;
+    @Autowired
+    ServiceRepository serviceRepository;
+    @Autowired
+    DoctorRepository doctorRepository;
+    @Autowired
+    BalanceRepository balanceRepository;
 
     @Override
     public ReturnUtil findOrderByOrderId(String orderFormId) {
-        OrderForm orderFormForm = orderFormFormRepository.findOrderByOrderId(orderFormId);
-        return ReturnUtil.ok(orderFormForm);
+        OrderForm orderForm = orderFormFormRepository.findOrderByOrderId(orderFormId);
+        return ReturnUtil.ok(orderForm);
     }
 
     @Override
@@ -52,7 +60,36 @@ public class OrderFormFormServiceImpl implements OrderFormService {
 
     @Override
     public ReturnUtil deleteOrderByOrderId(String orderFormId){
-        return ReturnUtil.ok(orderFormFormRepository.deleteOrderByOrderId(orderFormId));
+        OrderForm orderForm = orderFormFormRepository.findOrderByOrderId(orderFormId);
+        if(orderForm.timeId!=null)
+        {
+            Timeslot timeslot=timeslotRepository.findTimeslotByTimeId(orderForm.timeId);
+            timeslot.setIsOrdered(0);
+            timeslotRepository.save(timeslot);
+        }
+        List<ChatDetail> chatDetails=chatDetailRepository.findAllByChatId(orderForm.chatId);
+        for (ChatDetail chatDetail:chatDetails){
+            chatDetailRepository.deleteById(chatDetail.chatDetailId);
+        }
+        chatRepository.deleteById(orderForm.chatId);
+        Thirdparty thirdparty=thirdpartyRepository.findThirdpartyByOrderId(orderFormId);
+        thirdpartyRepository.deleteById(thirdparty.thirdpartyId);
+        orderFormFormRepository.deleteById(orderFormId);
+        return ReturnUtil.ok();
+    }
+
+    @Override
+    public ReturnUtil confirmOrderByOrderId(String orderFormId){
+        Thirdparty thirdparty=thirdpartyRepository.findThirdpartyByOrderId(orderFormId);
+        com.graduationproject.shareddoctor.Entity.Service service=serviceRepository.findServiceByServiceId(thirdparty.serviceId);
+        Doctor doctor=doctorRepository.findDoctorByDoctorId(service.doctorId);
+        Balance balance=balanceRepository.findBalanceByBalanceId(doctor.balanceId);
+        Double tempBalance=balance.balance;
+        tempBalance+=service.price;
+        balance.setBalance(tempBalance);
+        balanceRepository.save(balance);
+        thirdpartyRepository.deleteById(thirdparty.thirdpartyId);
+        return ReturnUtil.ok();
     }
 
     @Override
@@ -68,10 +105,6 @@ public class OrderFormFormServiceImpl implements OrderFormService {
             timeslot.setIsOrdered(1);
             timeslotRepository.save(timeslot);
         }
-        Thirdparty thirdparty=new Thirdparty();
-        thirdparty.setOrderId(orderForm.orderId);
-        thirdparty.setCreateDate(new Date());
-        thirdpartyRepository.save(thirdparty);
         return ReturnUtil.ok(orderForm);
     }
 

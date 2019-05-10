@@ -31,6 +31,9 @@ public class Service {
     @Column(name = "service_id",length = 32)
     public String serviceId;
 
+    @Column(name = "doctor_id",length = 32)
+    public String doctorId;
+
     @Column(name = "service_name")
     public String serviceName;
 

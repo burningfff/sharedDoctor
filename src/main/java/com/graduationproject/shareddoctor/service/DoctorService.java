@@ -54,6 +54,8 @@ public interface DoctorService {
 
     ReturnUtil findAllByDoctorName(String doctorName);
 
+    ReturnUtil findAllDoctorByDoctorName(Integer pageNum, Integer pageSize,String doctorName);
+
     ReturnUtil findAllByHospitalName(String hospitalName);
 
 }

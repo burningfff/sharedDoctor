@@ -10,4 +10,8 @@ public class Page {
     public int pageNum;
 
     public int pageSize;
+
+    public String patientName;
+
+    public String doctorName;
 }

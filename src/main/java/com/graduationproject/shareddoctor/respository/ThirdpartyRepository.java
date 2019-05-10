@@ -12,4 +12,5 @@ public interface ThirdpartyRepository  extends JpaRepository<Thirdparty,String> 
 
     Thirdparty findThirdpartyByOrderId(String OrderId);
 
+    void deleteThirdpartyByOrderId(String OrderId);
 }

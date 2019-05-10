@@ -15,5 +15,5 @@ public interface ChatDetailService {
 
     ReturnUtil addChatDetail(String chatId, String chatDetail);
 
-    ReturnUtil deleteChatDetailByChatId(String chatId);
+    ReturnUtil deleteAllChatDetailByChatId(String chatId);
 }

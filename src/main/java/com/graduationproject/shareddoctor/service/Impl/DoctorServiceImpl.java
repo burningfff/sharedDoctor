@@ -205,6 +205,13 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
+    public ReturnUtil findAllDoctorByDoctorName(Integer pageNum, Integer pageSize,String doctorName) {
+        Sort sort = new Sort(Sort.Direction.DESC, "doctorId");
+        Pageable pageable = new PageRequest(pageNum, pageSize, sort);
+        return ReturnUtil.ok(doctorRepository.findAllByDoctorNameContainingOrderByDoctorId(doctorName,pageable));
+    }
+
+    @Override
     public ReturnUtil findAllByHospitalName(String hospitalName) {
         List<Hospital> hospitals = hospitalRepository.findAllByHospitalNameContaining(hospitalName);
         List<Qualification> qualificationList = new ArrayList<>();

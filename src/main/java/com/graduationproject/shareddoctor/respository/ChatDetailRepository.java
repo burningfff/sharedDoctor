@@ -14,5 +14,5 @@ public interface ChatDetailRepository extends JpaRepository<ChatDetail,String> {
 
     List<ChatDetail> findAllByChatId(String ChatId);
 
-    void deleteChatDetailByChatId(String ChatId);
+    void deleteAllByChatId(String ChatId);
 }

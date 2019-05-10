@@ -39,6 +39,11 @@ public class PatientController {
         return patientService.findAllPatient(page.pageNum,page.pageSize);
     }
 
+    @PostMapping("/patient/findAllPatientByPatientName")
+    public ReturnUtil findAllPatientByPatientName(@RequestBody Page page){
+        return patientService.findAllPatientByPatientName(page.pageNum,page.pageSize,page.patientName);
+    }
+
     @PostMapping("/patient/deletePatient")
     public ReturnUtil deletePatient (@RequestBody Patient patient){
         return patientService.deletePatient(patient.getPatientId());

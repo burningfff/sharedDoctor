@@ -15,7 +15,9 @@ public interface ServiceService {
     //根据id查找Service
     ReturnUtil findServiceByServiceId(String serviceId);
 
-    ReturnUtil addService(String serviceName, Double price);
+    ReturnUtil findAllByDoctorId(String doctorId);
+
+    ReturnUtil addService(String doctorId,String serviceName, Double price);
 
     ReturnUtil deleteServiceByServiceId(String serviceId);
 

@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @program: sharedDoctor
@@ -37,8 +38,11 @@ public class ChatDetailServiceImpl implements ChatDetailService {
     }
 
     @Override
-    public ReturnUtil deleteChatDetailByChatId(String chatId){
-        chatDetailRepository.deleteChatDetailByChatId(chatId);
-        return ReturnUtil.ok("删除成功！");
+    public ReturnUtil deleteAllChatDetailByChatId(String chatId){
+        List<ChatDetail> chatDetails=chatDetailRepository.findAllByChatId(chatId);
+        for (ChatDetail chatDetail:chatDetails){
+            chatDetailRepository.deleteById(chatDetail.chatDetailId);
+        }
+        return ReturnUtil.ok();
     }
 }

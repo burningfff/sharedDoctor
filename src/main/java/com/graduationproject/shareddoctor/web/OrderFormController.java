@@ -49,9 +49,16 @@ public class OrderFormController {
         return orderFormService.deleteOrderByOrderId(orderForm.getOrderId());
     }
 
+    @PostMapping("/order/confirmOrderByOrderId")
+    public ReturnUtil confirmOrderByOrderId(@RequestBody OrderForm orderForm){
+        return orderFormService.confirmOrderByOrderId(orderForm.getOrderId());
+    }
+
     @PostMapping("/order/addOrder")
     public ReturnUtil addOrder(@RequestBody OrderForm orderForm){
         return orderFormService.addOrder(orderForm.getTimeId(), orderForm.getPatientId(),orderForm.getChatId());
     }
+
+
 
 }

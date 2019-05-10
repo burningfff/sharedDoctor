@@ -24,6 +24,9 @@ public class Thirdparty {
     @Column(name = "thirdparty_id",length = 32)
     public String thirdpartyId;
 
+    @Column(name = "service_id")
+    public String serviceId;
+
     @Column(name = "order_id")
     public String orderId;
 
@@ -33,5 +36,9 @@ public class Thirdparty {
     @OneToOne
     @JoinColumn(name="order_id",referencedColumnName="order_id", insertable=false, updatable=false)
     public OrderForm orderForm;
+
+    @ManyToOne
+    @JoinColumn(name="service_id",referencedColumnName="service_id", insertable=false, updatable=false)
+    public Service service;
 
 }

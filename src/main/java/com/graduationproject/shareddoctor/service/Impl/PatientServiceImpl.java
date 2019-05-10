@@ -64,6 +64,13 @@ public class PatientServiceImpl implements PatientService {
     }
     
     @Override
+    public ReturnUtil findAllPatientByPatientName(Integer pageNum, Integer pageSize,String patientName){
+        Sort sort = new Sort(Sort.Direction.DESC, "patientId");
+        Pageable pageable = new PageRequest(pageNum, pageSize, sort);
+        return ReturnUtil.ok(patientRepository.findAllByPatientNameContainingOrderByPatientId(patientName,pageable));
+    }
+
+    @Override
     public ReturnUtil addFromExcel(MultipartFile file){
         List<Patient> patients = PoiUtils.importPatient2List(file);
         for (Patient patient : patients) {

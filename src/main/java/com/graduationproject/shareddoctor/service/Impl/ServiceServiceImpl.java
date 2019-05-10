@@ -6,6 +6,9 @@ import com.graduationproject.shareddoctor.service.ServiceService;
 import com.graduationproject.shareddoctor.utils.ReturnUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+
+import java.util.List;
+
 /**
  * @program: sharedDoctor
  * @author: 杨帆
@@ -24,14 +27,21 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
+    public ReturnUtil findAllByDoctorId(String doctorId) {
+        List<Service> serviceList=serviceRepository.findAllByDoctorId(doctorId);
+        return ReturnUtil.ok(serviceList);
+    }
+
+    @Override
     public ReturnUtil deleteServiceByServiceId(String serviceId) {
         serviceRepository.deleteById(serviceId);
         return ReturnUtil.ok("删除成功");
     }
 
     @Override
-    public ReturnUtil addService(String serviceName,Double price) {
+    public ReturnUtil addService(String doctorId,String serviceName,Double price) {
         Service service=new Service();
+        service.setDoctorId(doctorId);
         service.setServiceName(serviceName);
         service.setPrice(price);
         serviceRepository.save(service);

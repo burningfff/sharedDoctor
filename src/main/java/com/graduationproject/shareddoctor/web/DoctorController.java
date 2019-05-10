@@ -47,6 +47,11 @@ public class DoctorController {
         return doctorService.findAllByDoctorName(doctor.getDoctorName());
     }
 
+    @PostMapping("/doctor/findAllDoctorByDoctorName")
+    public ReturnUtil findAllDoctorByDoctorName(@RequestBody Page page){
+        return doctorService.findAllDoctorByDoctorName(page.pageNum,page.pageSize,page.doctorName);
+    }
+    
     @PostMapping("/doctor/findAllDoctorByDepartName")
     public ReturnUtil findAllDoctorByDepartName(@RequestBody Depart depart){
         return doctorService.findAllDoctorByDepartName(depart.getDepartName());

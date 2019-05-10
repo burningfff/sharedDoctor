@@ -20,6 +20,8 @@ public interface OrderFormService {
 
     ReturnUtil deleteOrderByOrderId(String orderId);
 
+    ReturnUtil confirmOrderByOrderId(String orderId);
+
     ReturnUtil addOrder(String timeId,String patientId,String chatId);
 
 
