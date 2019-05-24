@@ -36,4 +36,7 @@ public class ChatDetail {
     @Column(name = "chat_date")
     public Date chatDate;
 
+    @Column(name = "chat_from",length = 32)
+    public String chatFrom;
+
 }

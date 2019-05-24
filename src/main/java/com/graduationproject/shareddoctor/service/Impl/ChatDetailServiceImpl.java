@@ -16,31 +16,32 @@ import java.util.List;
  * @author: 杨帆
  * @create: 2019/4/23
  **/
-@ComponentScan(basePackages="com.graduationproject.shareddoctor")
+@ComponentScan(basePackages = "com.graduationproject.shareddoctor")
 @Service
 public class ChatDetailServiceImpl implements ChatDetailService {
     @Autowired
     ChatDetailRepository chatDetailRepository;
 
     @Override
-    public ReturnUtil findAllByChatId (String chatId){
+    public ReturnUtil findAllByChatId(String chatId) {
         return ReturnUtil.ok(chatDetailRepository.findAllByChatId(chatId));
     }
 
     @Override
-    public ReturnUtil addChatDetail(String chatId, String chatDetail){
-        ChatDetail chatDetail1=new ChatDetail();
+    public ReturnUtil addChatDetail(String chatId, String chatDetail, String chatFrom) {
+        ChatDetail chatDetail1 = new ChatDetail();
         chatDetail1.setChatDetail(chatDetail);
         chatDetail1.setChatId(chatId);
+        chatDetail1.setChatFrom(chatFrom);
         chatDetail1.setChatDate(new Date());
         chatDetailRepository.save(chatDetail1);
         return ReturnUtil.ok(chatDetail1);
     }
 
     @Override
-    public ReturnUtil deleteAllChatDetailByChatId(String chatId){
-        List<ChatDetail> chatDetails=chatDetailRepository.findAllByChatId(chatId);
-        for (ChatDetail chatDetail:chatDetails){
+    public ReturnUtil deleteAllChatDetailByChatId(String chatId) {
+        List<ChatDetail> chatDetails = chatDetailRepository.findAllByChatId(chatId);
+        for (ChatDetail chatDetail : chatDetails) {
             chatDetailRepository.deleteById(chatDetail.chatDetailId);
         }
         return ReturnUtil.ok();

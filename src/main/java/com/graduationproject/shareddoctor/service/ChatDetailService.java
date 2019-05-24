@@ -11,9 +11,9 @@ import java.util.Date;
  **/
 public interface ChatDetailService {
 
-    ReturnUtil findAllByChatId (String chatId);
+    ReturnUtil findAllByChatId(String chatId);
 
-    ReturnUtil addChatDetail(String chatId, String chatDetail);
+    ReturnUtil addChatDetail(String chatId, String chatDetail, String chatFrom);
 
     ReturnUtil deleteAllChatDetailByChatId(String chatId);
 }

@@ -33,7 +33,7 @@ public class ChatDetailController {
 
     @PostMapping("/chatDetail/addChatDetail")
     public ReturnUtil addChatDetail(@RequestBody ChatDetail chatDetail){
-        return chatDetailService.addChatDetail(chatDetail.getChatId(),chatDetail.getChatDetail());
+        return chatDetailService.addChatDetail(chatDetail.getChatId(),chatDetail.getChatDetail(),chatDetail.getChatFrom());
     }
 
 }
