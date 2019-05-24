@@ -98,6 +98,11 @@ public class DoctorController {
         return doctorService.updateDoctorImageUrl(doctor.getImageUrl(),doctor.getDoctorId());
     }
 
+    @PostMapping("/doctor/updateDoctorEvaluation")
+    public ReturnUtil updateDoctorEvaluation(@RequestBody Doctor doctor){
+        return doctorService.updateDoctorEvaluation(doctor.getEvaluation(),doctor.getDoctorId());
+    }
+
     @PostMapping("/doctor/addFromExcel")
     public ReturnUtil addFromExcel(@RequestParam MultipartFile file) throws Exception {
         return doctorService.addFromExcel(file);

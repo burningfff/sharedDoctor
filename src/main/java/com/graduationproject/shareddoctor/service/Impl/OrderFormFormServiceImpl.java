@@ -89,6 +89,9 @@ public class OrderFormFormServiceImpl implements OrderFormService {
         balance.setBalance(tempBalance);
         balanceRepository.save(balance);
         thirdpartyRepository.deleteById(thirdparty.thirdpartyId);
+        OrderForm orderForm=orderFormFormRepository.findOrderByOrderId(orderFormId);
+        orderForm.setOrderState(1);
+        orderFormFormRepository.save(orderForm);
         return ReturnUtil.ok();
     }
 
@@ -98,6 +101,7 @@ public class OrderFormFormServiceImpl implements OrderFormService {
         orderForm.setPatientId(patientId);
         orderForm.setTimeId(timeId);
         orderForm.setChatId(chatId);
+        orderForm.setOrderState(0);
         orderFormFormRepository.save(orderForm);
         if(timeId!=null)
         {

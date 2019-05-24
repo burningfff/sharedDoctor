@@ -37,6 +37,9 @@ public interface DoctorService {
     //更新医生头像照片
     ReturnUtil updateDoctorImageUrl(String imageUrl, String doctorId);
 
+    //更新评价
+    ReturnUtil updateDoctorEvaluation(Double evaluation, String doctorId);
+
     //从文件导入医护人员
     ReturnUtil addFromExcel(MultipartFile file);
 

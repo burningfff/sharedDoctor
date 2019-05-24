@@ -36,6 +36,9 @@ public class OrderForm {
     @Column(name = "chat_id",length = 32)
     public String chatId;
 
+    @Column(name = "order_state")
+    public Integer orderState;
+
     @OneToOne
     @JoinColumn(name="chat_id",referencedColumnName="chat_id", insertable=false, updatable=false)
     public Chat chat;

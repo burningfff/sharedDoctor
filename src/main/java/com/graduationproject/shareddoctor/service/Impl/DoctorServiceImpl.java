@@ -113,6 +113,16 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
+    public ReturnUtil updateDoctorEvaluation(Double evaluation, String doctorId) {
+        Doctor doctor = doctorRepository.findDoctorByDoctorId(doctorId);
+        Double tempEvaluation=(evaluation+doctor.getEvaluation()*doctor.getReplyTimes())/(doctor.getReplyTimes()+1);
+        doctor.setEvaluation(tempEvaluation);
+        doctor.setReplyTimes(doctor.getReplyTimes()+1);
+        doctorRepository.save(doctor);
+        return ReturnUtil.ok();
+    }
+
+    @Override
     public ReturnUtil addFromExcel(MultipartFile file) {
         List<Doctor> doctors = PoiUtils.importDoctor2List(file);
         for (Doctor doctor : doctors) {
